@@ -903,7 +903,7 @@
               type="text" 
               id="inputNomeServidor" 
               maxlength="30"
-              placeholder="Ex.: Rosbon, Mariana, Carlos, Danielle..." 
+              placeholder="" autocomplete="off" 
               class="w-full pl-11 pr-4 py-3 bg-slate-950 border-2 border-slate-700 focus:border-amber-500 rounded-2xl text-sm font-semibold text-white placeholder-slate-500 focus:outline-none transition shadow-inner"
               oninput="validarNomeServidor(this.value)"
               onkeydown="if(event.key === 'Enter') tentarConcluirOnboarding()"
@@ -2759,9 +2759,9 @@ ${COMANDO_FINAL_JEC}`;
 
       aplicarEfeitoDesfoqueFundo(true);
 
-      if (nomeSalvo && nomeSalvo.trim().length >= 2) {
-        inputNome.value = nomeSalvo.trim();
-        validarNomeServidor(nomeSalvo.trim());
+      if (inputNome) {
+        inputNome.value = "";
+        validarNomeServidor("");
       }
 
       setTimeout(() => {

@@ -1,0 +1,2877 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Soluções de Prompts • Juizados Especiais (JEC & JECRIM) - TJPB</title>
+  <meta name="description" content="Acervo de prompts jurídicos para Juizados Especiais Cíveis e Criminais, com ferramentas de edição e elaboração de minutas.">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23090D16'/%3E%3Cpath d='M32 12v38M18 20h28M14 20l-8 16h16L14 20zm36 0-8 16h16L50 20zM20 52h24' fill='none' stroke='%23D4AF37' stroke-width='4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            tjpb: {
+              gold: '#D4AF37',
+              goldHover: '#B8972E',
+              dark: '#090D16',
+              card: '#111726',
+              border: '#1E293B',
+              accent: '#2563EB'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+            mono: ['JetBrains Mono', 'Fira Code', 'monospace']
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- FontAwesome 6 Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Chart.js para Métricas -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <!-- PDF.js para Extração Local e Segura -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <script>
+    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+  </script>
+
+  <!-- Mammoth.js para Leitura Direta de DOCX -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"></script>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap');
+    
+    :root {
+      --bg-body: #090D16;
+      --bg-sidebar: #0D121F;
+      --bg-card: #111726;
+      --border-color: #1E293B;
+      --text-main: #F1F5F9;
+      --text-muted: #94A3B8;
+      --accent-gold: #D4AF37;
+    }
+
+    html.light {
+      --bg-body: #F8FAFC;
+      --bg-sidebar: #FFFFFF;
+      --bg-card: #FFFFFF;
+      --border-color: #E2E8F0;
+      --text-main: #0F172A;
+      --text-muted: #64748B;
+      --accent-gold: #B45309;
+    }
+
+    body {
+      background-color: var(--bg-body);
+      color: var(--text-main);
+      transition: background-color 0.25s ease, color 0.25s ease;
+    }
+
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: #0B0F19; }
+    html.light ::-webkit-scrollbar-track { background: #F1F5F9; }
+    ::-webkit-scrollbar-thumb { background: #1E293B; border-radius: 9999px; }
+    html.light ::-webkit-scrollbar-thumb { background: #CBD5E1; }
+
+    .glass-panel {
+      background: rgba(13, 18, 31, 0.85);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+    }
+    html.light .glass-panel {
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(0, 0, 0, 0.08);
+    }
+
+    .glow-hover:hover {
+      box-shadow: 0 0 20px -5px rgba(212, 175, 55, 0.25);
+      border-color: rgba(212, 175, 55, 0.45);
+    }
+
+    @media print {
+      body { background: #fff !important; color: #000 !important; }
+      #mainSidebar, header, .no-print { display: none !important; }
+      main { width: 100% !important; margin: 0 !important; padding: 0 !important; }
+    }
+  </style>
+</head>
+<body class="min-h-screen flex overflow-x-hidden antialiased selection:bg-amber-500/20 selection:text-amber-300">
+
+  <!-- ================= BARRA LATERAL EXCLUSIVA: JUIZADOS ESPECIAIS ================= -->
+  <aside id="mainSidebar" class="w-64 bg-[var(--bg-sidebar)] border-r border-[var(--border-color)] flex flex-col justify-between shrink-0 transition-all duration-300 ease-in-out fixed inset-y-0 left-0 z-40 lg:static">
+    <div class="overflow-y-auto flex-1 scrollbar-custom">
+      
+      <!-- Topo da Barra Lateral -->
+      <div class="h-20 flex items-center justify-between px-5 border-b border-[var(--border-color)] sticky top-0 bg-[var(--bg-sidebar)] z-10">
+        <div class="flex items-center space-x-3 overflow-hidden">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-amber-600 via-amber-500 to-yellow-400 flex items-center justify-center text-slate-950 font-black text-lg shadow-md shrink-0">
+            <i class="fa-solid fa-scale-balanced"></i>
+          </div>
+          <div class="sidebar-header-title flex flex-col leading-tight truncate">
+            <span class="font-extrabold tracking-tight text-white flex items-center gap-1.5 text-sm dark:text-white text-slate-900">
+              JUIZADOS <span class="text-[10px] px-1.5 py-0.5 rounded bg-amber-500/10 text-amber-500 border border-amber-500/20 font-mono font-bold">JEC • JECRIM</span>
+            </span>
+            <span class="text-[11px] text-[var(--text-muted)] font-medium">Soluções de Prompts</span>
+          </div>
+        </div>
+        <button id="toggleSidebarBtn" title="Recolher/Expandir menu" class="w-8 h-8 rounded-lg bg-slate-800/40 hover:bg-slate-700/60 text-slate-300 flex items-center justify-center transition-colors">
+          <i class="fa-solid fa-bars-staggered text-xs"></i>
+        </button>
+      </div>
+
+      <!-- Navegação Principal por Módulos e Abas -->
+      <nav class="p-3 space-y-1.5 text-xs font-semibold">
+        
+        <p class="px-3 pt-2 pb-1 text-[10px] font-bold tracking-wider text-amber-500 uppercase">Módulos dos Juizados</p>
+
+        <!-- Aba 1: Catálogo Principal JEC Master -->
+        <button onclick="navegarAba('catalogo')" id="nav-btn-catalogo" class="nav-modulo-btn active w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-amber-400 bg-amber-500/10 border border-amber-500/30 transition-all text-left">
+          <i class="fa-solid fa-layer-group text-sm w-5 text-center text-amber-400"></i>
+          <span>Acervo JEC & JECRIM</span>
+          <span id="badge-total-jec" class="ml-auto text-[10px] bg-amber-500/20 text-amber-400 px-2 py-0.5 rounded-full font-bold">187</span>
+        </button>
+
+        <!-- Aba 2: Edição & Estúdio de Prompts (NOVA FUNCIONALIDADE) -->
+        <button onclick="navegarAba('editor')" id="nav-btn-editor" class="nav-modulo-btn w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-[var(--text-muted)] hover:text-[var(--text-main)] hover:bg-slate-800/30 transition-all text-left group">
+          <i class="fa-solid fa-pen-ruler text-sm w-5 text-center text-blue-400 group-hover:scale-110 transition-transform"></i>
+          <span>Edição de Prompt</span>
+          <span class="ml-auto text-[9px] bg-blue-500/20 text-blue-300 px-1.5 py-0.5 rounded font-mono font-bold">Estúdio</span>
+        </button>
+
+        <!-- Aba 3: Gabinete IA & Minutador -->
+        <button onclick="navegarAba('gabinete')" id="nav-btn-gabinete" class="nav-modulo-btn w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-[var(--text-muted)] hover:text-[var(--text-main)] hover:bg-slate-800/30 transition-all text-left group">
+          <i class="fa-solid fa-wand-magic-sparkles text-sm w-5 text-center text-emerald-400 group-hover:scale-110 transition-transform"></i>
+          <span>Gabinete IA & Minuta</span>
+          <span class="ml-auto text-[9px] bg-emerald-500/20 text-emerald-300 px-1.5 py-0.5 rounded font-mono">Gemini</span>
+        </button>
+
+        <!-- Ritos e Partes da Lei 9.099/95 -->
+        <div class="pt-3 pb-1"><hr class="border-[var(--border-color)]"></div>
+        <p class="px-3 pt-1 pb-1 text-[10px] font-bold tracking-wider text-[var(--text-muted)] uppercase">Ritos Especializados</p>
+
+        <button onclick="filtrarParteEspecifica('parte1')" class="filtro-rito-btn w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800/40 text-left transition">
+          <span class="w-2 h-2 rounded-full bg-amber-400"></span>
+          <span>Parte I: Ritos Iniciais JEC</span>
+          <span class="ml-auto text-[10px] text-slate-500 font-mono">1-7</span>
+        </button>
+
+        <button onclick="filtrarParteEspecifica('parte2')" class="filtro-rito-btn w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800/40 text-left transition">
+          <span class="w-2 h-2 rounded-full bg-purple-400"></span>
+          <span>Parte II: Turma & JECRIM</span>
+          <span class="ml-auto text-[10px] text-slate-500 font-mono">8-27</span>
+        </button>
+
+        <button onclick="filtrarParteEspecifica('parte3')" class="filtro-rito-btn w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800/40 text-left transition">
+          <span class="w-2 h-2 rounded-full bg-blue-400"></span>
+          <span>Parte III: Integração CPC</span>
+          <span class="ml-auto text-[10px] text-slate-500 font-mono">28-58</span>
+        </button>
+
+        <button onclick="filtrarParteEspecifica('parte4')" class="filtro-rito-btn w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800/40 text-left transition">
+          <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+          <span>Parte IV: Consumo & CDC</span>
+          <span class="ml-auto text-[10px] text-slate-500 font-mono">59-88</span>
+        </button>
+
+        <button onclick="filtrarParteEspecifica('parte5')" class="filtro-rito-btn w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800/40 text-left transition">
+          <span class="w-2 h-2 rounded-full bg-cyan-400"></span>
+          <span>Parte V: Cálculos & Perícia</span>
+          <span class="ml-auto text-[10px] text-slate-500 font-mono">89-96</span>
+        </button>
+
+        <button onclick="filtrarParteEspecifica('parte6')" class="filtro-rito-btn w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800/40 text-left transition">
+          <span class="w-2 h-2 rounded-full bg-pink-400"></span>
+          <span>Parte VI: Casos Práticos</span>
+          <span class="ml-auto text-[10px] text-slate-500 font-mono">97-187</span>
+        </button>
+
+        <!-- Ecossistema Oficial -->
+        <div class="pt-3 pb-1"><hr class="border-[var(--border-color)]"></div>
+        <p class="px-3 pt-1 pb-1 text-[10px] font-bold tracking-wider text-[var(--text-muted)] uppercase">Atalhos Externos</p>
+
+        <a href="https://minutaia.tjpb.jus.br/login" target="_blank" rel="noopener noreferrer" class="w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-slate-400 hover:text-amber-300 hover:bg-amber-500/5 transition">
+          <i class="fa-solid fa-robot text-amber-400 w-4 text-center"></i>
+          <span>Minuta IA TJPB</span>
+          <i class="fa-solid fa-arrow-up-right-from-square text-[9px] ml-auto text-slate-500"></i>
+        </a>
+
+        <a href="https://atos.cnj.jus.br/atos/detalhar/6001" target="_blank" rel="noopener noreferrer" class="w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-slate-400 hover:text-purple-300 hover:bg-purple-500/5 transition">
+          <i class="fa-solid fa-shield-halved text-purple-400 w-4 text-center"></i>
+          <span>Res. CNJ 615/2025</span>
+          <i class="fa-solid fa-arrow-up-right-from-square text-[9px] ml-auto text-slate-500"></i>
+        </a>
+      </nav>
+    </div>
+
+    <!-- Rodapé da Barra Lateral -->
+    <div class="p-3.5 border-t border-[var(--border-color)] bg-slate-900/30 dark:bg-slate-900/30 text-left">
+      <div class="flex items-center gap-2 mb-2">
+        <a href="https://portaldousuario.tjpb.jus.br/" target="_blank" class="flex-1 py-1 px-2 rounded-lg bg-slate-800/70 hover:bg-slate-700 text-slate-300 text-[11px] text-center border border-slate-700/50 transition">
+          <i class="fa-solid fa-headset mr-1 text-amber-400"></i> Suporte
+        </a>
+        <a href="https://api.whatsapp.com/send?phone=5583993819106" target="_blank" class="py-1 px-2.5 rounded-lg bg-emerald-950/60 hover:bg-emerald-900 text-emerald-300 border border-emerald-800/40 text-[11px] text-center transition">
+          <i class="fa-brands fa-whatsapp text-emerald-400"></i>
+        </a>
+      </div>
+      <span class="text-[9px] uppercase tracking-wider text-slate-500 font-semibold block">Idealização</span>
+      <span class="text-[11px] text-slate-300 font-medium block leading-tight">José C L Sá</span>
+      <span class="text-[10px] text-amber-500/90 block">Juiz de Direito - 4º Juizado Especial de João Pessoa e Cabedelo - TJPB</span>
+    </div>
+  </aside>
+
+  <!-- ================= CONTEÚDO PRINCIPAL (ÁREA DE TRABALHO) ================= -->
+  <main class="flex-1 flex flex-col min-w-0 overflow-y-auto max-h-screen relative" id="mainContentArea">
+    
+    <!-- Barra Superior -->
+    <header class="h-20 glass-panel sticky top-0 z-30 px-6 flex items-center justify-between border-b border-[var(--border-color)]">
+      <div class="flex items-center gap-4">
+        <button id="mobileMenuBtn" class="lg:hidden p-2 text-slate-400 hover:text-white rounded-lg bg-slate-800/50">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+        <div>
+          <h1 class="text-lg font-bold text-[var(--text-main)] tracking-tight flex items-center gap-2">
+            Soluções de Prompts • Juizados Especiais
+            <span class="text-xs font-semibold text-amber-400 bg-amber-500/10 border border-amber-500/20 px-2.5 py-0.5 rounded-full hidden sm:inline-flex">Lei 9.099/95</span>
+          </h1>
+          <div class="flex items-center gap-2 mt-0.5">
+            <p class="text-xs text-[var(--text-muted)] hidden md:block">Acervo unificado JEC/JECRIM com regras anti-alucinação e estúdio de edição</p>
+            <span id="badgeSaudacaoServidor" class="hidden items-center gap-1.5 text-xs bg-amber-500/15 text-amber-400 border border-amber-500/30 px-2.5 py-0.5 rounded-full font-medium">
+              <i class="fa-solid fa-user-check text-amber-400 text-[11px]"></i>
+              <span>Gabinete de <strong id="nomeServidorHeader" class="text-[var(--text-main)] font-semibold">Servidor</strong></span>
+              <button onclick="reabrirOnboarding()" title="Alterar identificação" class="ml-1 text-slate-400 hover:text-amber-300 text-[10px]"><i class="fa-solid fa-pen"></i></button>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Ações do Topo -->
+      <div class="flex items-center gap-2.5">
+
+        <!-- Administração protegida por autenticação server-side -->
+        <a href="/admin" aria-label="Abrir Administração" class="px-3 py-2 rounded-xl bg-slate-900/80 hover:bg-slate-800 border border-amber-500/30 text-amber-300 text-xs flex items-center gap-1.5 transition">
+          <i class="fa-solid fa-user-shield"></i>
+          <span class="hidden sm:inline font-medium">Administração</span>
+        </a>
+        
+        <!-- Alternador de Tema Claro / Escuro -->
+        <button onclick="alternarTema()" id="btn-theme-toggle" title="Alternar entre modo claro e escuro" aria-label="Alternar tema" class="px-3 py-2 rounded-xl bg-slate-900/80 hover:bg-slate-800 border border-[var(--border-color)] text-xs flex items-center gap-1.5 transition text-[var(--text-main)]">
+          <span id="theme-icon-container"><i class="fa-solid fa-moon text-amber-400"></i></span>
+          <span class="hidden sm:inline font-medium text-xs" id="theme-label">Tema</span>
+        </button>
+
+        <!-- Importar Autos -->
+        <button onclick="abrirModalImportador()" class="px-3.5 py-2 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-bold text-xs flex items-center gap-2 shadow-lg shadow-amber-900/30 transition-all active:scale-95">
+          <i class="fa-solid fa-file-arrow-up"></i>
+          <span class="hidden sm:inline">Importar Autos JEC</span>
+        </button>
+
+        <!-- Perfil de serviço Gemini -->
+        <button onclick="abrirModalChaves()" id="btn-status-chave" class="px-3 py-2 rounded-xl bg-slate-900/90 hover:bg-slate-800 text-slate-200 border border-[var(--border-color)] text-xs font-medium flex items-center gap-2 transition">
+          <i class="fa-solid fa-key text-amber-400"></i>
+          <span class="hidden md:inline text-slate-400 text-[11px]">IA:</span>
+          <span id="label-chave-ativa" class="font-mono text-emerald-400 text-xs font-semibold">Perfil 1 (servidor)</span>
+        </button>
+
+        <!-- Busca Rápida -->
+        <button onclick="focarBuscaCatalogo()" class="flex items-center gap-2 px-3 py-2 bg-slate-900 border border-[var(--border-color)] rounded-xl text-xs text-slate-400 hover:text-slate-200 transition">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <span class="hidden sm:inline">Buscar (Ctrl+K)</span>
+        </button>
+
+      </div>
+    </header>
+
+    <!-- ÁREA DE TRABALHO DAS ABAS -->
+    <div class="p-5 sm:p-7 space-y-6 max-w-[1600px] w-full mx-auto">
+
+      <!-- ================= ABA 1: CATÁLOGO JEC & JECRIM ================= -->
+      <section id="aba-secao-catalogo" class="space-y-6">
+        
+        <!-- Banner Normativo da Lei 9.099/95 e Anti-Alucinação -->
+        <div class="p-4 sm:p-5 rounded-2xl bg-gradient-to-r from-amber-950/30 via-slate-900/90 to-blue-950/30 border border-amber-500/20 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 shadow-lg">
+          <div class="flex items-start gap-3.5 flex-1">
+            <div class="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-400 flex items-center justify-center shrink-0 mt-0.5">
+              <i class="fa-solid fa-scale-balanced text-lg"></i>
+            </div>
+            <div class="space-y-1 text-xs">
+              <h2 class="font-bold text-[var(--text-main)] flex items-center gap-2 text-sm">
+                Microssistema Sumaríssimo dos Juizados Especiais (Lei nº 9.099/95)
+              </h2>
+              <p class="text-[var(--text-muted)] leading-relaxed">
+                Oralidade, simplicidade, informalidade, economia processual e celeridade. Todos os modelos contêm blindagem anti-alucinação: comandos líquidos (vedada condenação ilíquida), enfrentamento de preliminares e conformidade com a <strong>Res. CNJ 615/2025</strong>.
+              </p>
+            </div>
+          </div>
+
+          <div class="shrink-0 flex flex-wrap gap-2 w-full md:w-auto">
+            <button onclick="copiarComandoMestreJECStandalone()" class="px-3 py-2 rounded-xl text-xs bg-amber-500/10 hover:bg-amber-500/20 text-amber-300 border border-amber-500/30 transition flex items-center gap-1.5">
+              <i class="fa-solid fa-microchip text-amber-400"></i> Comando-Mestre JEC
+            </button>
+            <button onclick="abrirModalRes615()" class="px-3 py-2 rounded-xl text-xs bg-purple-500/10 hover:bg-purple-500/20 text-purple-300 border border-purple-500/30 transition flex items-center gap-1.5">
+              <i class="fa-solid fa-scale-unbalanced text-purple-400"></i> Res. CNJ 615
+            </button>
+          </div>
+        </div>
+
+        <!-- Barra de Busca e Filtros por Tipo de Ato -->
+        <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 pb-2 border-b border-[var(--border-color)]">
+          
+          <!-- Filtro por Tipo de Ato Judicial -->
+          <div class="flex items-center gap-1.5 flex-wrap">
+            <span class="text-xs text-[var(--text-muted)] font-bold mr-1 flex items-center gap-1">
+              <i class="fa-solid fa-filter text-[10px] text-amber-400"></i> Ato:
+            </span>
+            <button onclick="filtrarAtoJEC('todos')" class="tab-ato-jec active px-3 py-1.5 rounded-xl text-xs font-semibold bg-amber-500/20 text-amber-300 border border-amber-500/30 transition">Todos</button>
+            <button onclick="filtrarAtoJEC('despacho')" class="tab-ato-jec px-3 py-1.5 rounded-xl text-xs font-medium bg-slate-800 text-slate-300 hover:text-white border border-slate-700/60 transition flex items-center gap-1.5">
+              <i class="fa-solid fa-pen-nib text-blue-400 text-[10px]"></i> Despachos
+            </button>
+            <button onclick="filtrarAtoJEC('decisao')" class="tab-ato-jec px-3 py-1.5 rounded-xl text-xs font-medium bg-slate-800 text-slate-300 hover:text-white border border-slate-700/60 transition flex items-center gap-1.5">
+              <i class="fa-solid fa-gavel text-amber-400 text-[10px]"></i> Decisões & Tutelas
+            </button>
+            <button onclick="filtrarAtoJEC('sentenca')" class="tab-ato-jec px-3 py-1.5 rounded-xl text-xs font-medium bg-slate-800 text-slate-300 hover:text-white border border-slate-700/60 transition flex items-center gap-1.5">
+              <i class="fa-solid fa-scroll text-emerald-400 text-[10px]"></i> Sentenças
+            </button>
+          </div>
+
+          <!-- Input de Pesquisa do Acervo -->
+          <div class="relative w-full md:w-80">
+            <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-xs text-slate-400 pointer-events-none"></i>
+            <input type="text" id="catalogSearchInput" placeholder="Pesquisar tema no JEC (Ctrl+K)..." class="w-full pl-8 pr-8 py-2 bg-[var(--bg-card)] border border-[var(--border-color)] rounded-xl text-xs text-[var(--text-main)] placeholder-slate-500 focus:outline-none focus:border-amber-500 transition shadow-inner" oninput="pesquisarPromptsJEC(this.value)">
+            <button id="clearSearchBtn" onclick="limparBuscaJEC()" class="hidden absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-white">
+              <i class="fa-solid fa-xmark"></i>
+            </button>
+          </div>
+
+        </div>
+
+        <!-- Seletor Taxonômico dos 60 Casos Práticos -->
+        <div class="p-3 rounded-xl bg-[var(--bg-card)] border border-[var(--border-color)] flex flex-wrap items-center gap-1.5 text-xs">
+          <span class="text-[11px] font-bold text-amber-400 uppercase tracking-wider flex items-center gap-1 mr-1">
+            <i class="fa-solid fa-tags"></i> Taxonomia Prática (90 Casos):
+          </span>
+          <button onclick="filtrarTaxonomiaPratica('todas')" class="tax-btn active px-2.5 py-1 rounded-lg text-[11px] font-semibold bg-amber-500/20 text-amber-300 border border-amber-500/30 transition">Todas</button>
+          <button onclick="filtrarTaxonomiaPratica('Tutela de Urgência')" class="tax-btn px-2.5 py-1 rounded-lg text-[11px] font-medium bg-slate-800/80 text-slate-300 hover:text-white hover:bg-slate-700 transition">Tutela de Urgência</button>
+          <button onclick="filtrarTaxonomiaPratica('Execução')" class="tax-btn px-2.5 py-1 rounded-lg text-[11px] font-medium bg-slate-800/80 text-slate-300 hover:text-white hover:bg-slate-700 transition">Execução</button>
+          <button onclick="filtrarTaxonomiaPratica('SISBAJUD / Penhora')" class="tax-btn px-2.5 py-1 rounded-lg text-[11px] font-medium bg-slate-800/80 text-slate-300 hover:text-white hover:bg-slate-700 transition">SISBAJUD / Penhora</button>
+          <button onclick="filtrarTaxonomiaPratica('Competência')" class="tax-btn px-2.5 py-1 rounded-lg text-[11px] font-medium bg-slate-800/80 text-slate-300 hover:text-white hover:bg-slate-700 transition">Competência</button>
+          <button onclick="filtrarTaxonomiaPratica('Recuperação Judicial')" class="tax-btn px-2.5 py-1 rounded-lg text-[11px] font-medium bg-slate-800/80 text-slate-300 hover:text-white hover:bg-slate-700 transition">Recuperação Judicial</button>
+          <button onclick="filtrarTaxonomiaPratica('Telecomunicações')" class="tax-btn px-2.5 py-1 rounded-lg text-[11px] font-medium bg-slate-800/80 text-slate-300 hover:text-white hover:bg-slate-700 transition">Telecomunicações</button>
+          <button onclick="filtrarTaxonomiaPratica('Saúde')" class="tax-btn px-2.5 py-1 rounded-lg text-[11px] font-medium bg-slate-800/80 text-slate-300 hover:text-white hover:bg-slate-700 transition">Saúde</button>
+          <button onclick="filtrarTaxonomiaPratica('Relações Bancárias')" class="tax-btn px-2.5 py-1 rounded-lg text-[11px] font-medium bg-slate-800/80 text-slate-300 hover:text-white hover:bg-slate-700 transition">Relações Bancárias</button>
+          <button onclick="filtrarTaxonomiaPratica('Embargos e Exceções')" class="tax-btn px-2.5 py-1 rounded-lg text-[11px] font-medium bg-slate-800/80 text-slate-300 hover:text-white hover:bg-slate-700 transition">Embargos / Exceções</button>
+          <button onclick="filtrarTaxonomiaPratica('Arrematação')" class="tax-btn px-2.5 py-1 rounded-lg text-[11px] font-medium bg-slate-800/80 text-slate-300 hover:text-white hover:bg-slate-700 transition">Arrematação</button>
+        </div>
+
+        <!-- Contador e Indicador de Exibição -->
+        <div class="flex items-center justify-between text-xs text-[var(--text-muted)]">
+          <span id="contadorJECDisplay" class="font-mono bg-[var(--bg-card)] px-3 py-1 rounded-lg border border-[var(--border-color)]">
+            Exibindo 187 modelos de Juizados Especiais
+          </span>
+          <span class="text-[11px] text-amber-500 font-medium">Clique em "Editar / Customizar" para abrir na aba de edição</span>
+        </div>
+
+        <!-- Container Dinâmico dos Cards do JEC -->
+        <div id="containerJECPrompts" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5">
+          <!-- Renderizado via JavaScript -->
+        </div>
+
+        <div id="noResultsJEC" class="hidden text-center py-16 bg-[var(--bg-card)] rounded-2xl border border-dashed border-[var(--border-color)]">
+          <i class="fa-solid fa-folder-open text-4xl text-slate-600 mb-3"></i>
+          <h3 class="text-base font-bold text-[var(--text-main)]">Nenhum modelo do JEC localizado</h3>
+          <p class="text-xs text-[var(--text-muted)] max-w-sm mx-auto mt-1">Tente pesquisar termos mais abrangentes como "voo", "consignado", "revelia" ou "execução".</p>
+          <button onclick="limparBuscaJEC()" class="mt-4 px-4 py-2 rounded-xl text-xs bg-slate-800 text-slate-200 border border-slate-700">Limpar Pesquisa</button>
+        </div>
+
+      </section>
+
+      <!-- ================= ABA 2: EDIÇÃO & ESTÚDIO DE PROMPTS (NOVA ABA) ================= -->
+      <section id="aba-secao-editor" class="space-y-6 hidden">
+        
+        <div class="p-6 rounded-2xl bg-[var(--bg-card)] border border-blue-500/30 shadow-xl space-y-5">
+          
+          <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 pb-4 border-b border-[var(--border-color)]">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-xl bg-blue-500/20 text-blue-400 flex items-center justify-center text-lg border border-blue-500/30">
+                <i class="fa-solid fa-pen-ruler"></i>
+              </div>
+              <div>
+                <h2 class="text-base font-bold text-[var(--text-main)] flex items-center gap-2">
+                  Estúdio de Edição & Customização de Prompts
+                  <span class="text-[10px] bg-blue-500/20 text-blue-300 border border-blue-500/30 px-2 py-0.5 rounded font-mono font-bold">JEC Studio</span>
+                </h2>
+                <p class="text-xs text-[var(--text-muted)]">Modifique as teses, adapte às especificidades da sua Comarca, insira variáveis de partes e teste ao vivo.</p>
+              </div>
+            </div>
+
+            <!-- Botões Rápidos do Estúdio -->
+            <div class="flex items-center gap-2">
+              <button onclick="clonarPromptParaNovo()" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold flex items-center gap-1.5 border border-slate-700 transition">
+                <i class="fa-solid fa-plus text-blue-400"></i> Criar do Zero
+              </button>
+              <button onclick="salvarPromptPersonalizadoLocal()" class="px-3 py-1.5 rounded-lg bg-emerald-600/20 hover:bg-emerald-600/30 text-emerald-300 border border-emerald-500/40 text-xs font-semibold flex items-center gap-1.5 transition">
+                <i class="fa-solid fa-floppy-disk text-emerald-400"></i> Salvar Rascunho
+              </button>
+            </div>
+          </div>
+
+          <!-- Grade de Parâmetros e Variáveis de Substituição -->
+          <div class="grid grid-cols-1 md:grid-cols-4 gap-4 text-xs">
+            <div>
+              <label class="block font-semibold text-[var(--text-muted)] mb-1 uppercase tracking-wider">Título / Identificador</label>
+              <input type="text" id="editor-titulo" placeholder="Ex.: JEC: Dano Moral por Cancelamento de Voo" class="w-full bg-slate-950 border border-[var(--border-color)] rounded-xl p-2.5 text-[var(--text-main)] focus:border-blue-500 focus:outline-none font-medium">
+            </div>
+
+            <div>
+              <label class="block font-semibold text-[var(--text-muted)] mb-1 uppercase tracking-wider">Ato do JEC</label>
+              <select id="editor-categoria" class="w-full bg-slate-950 border border-[var(--border-color)] rounded-xl p-2.5 text-[var(--text-main)] focus:border-blue-500 focus:outline-none">
+                <option value="sentenca">Sentença (Mérito ou Extintiva)</option>
+                <option value="decisao">Decisão Interlocutória / Tutela</option>
+                <option value="despacho">Despacho Ordinatório</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="block font-semibold text-[var(--text-muted)] mb-1 uppercase tracking-wider">Base Normativa / Enunciado</label>
+              <input type="text" id="editor-norma" placeholder="Ex.: Lei 9.099/95 • Enunciado 139 FONAJE" class="w-full bg-slate-950 border border-[var(--border-color)] rounded-xl p-2.5 text-[var(--text-main)] focus:border-blue-500 focus:outline-none font-mono">
+            </div>
+
+            <div>
+              <label class="block font-semibold text-[var(--text-muted)] mb-1 uppercase tracking-wider">Parte / Rito Sumaríssimo</label>
+              <select id="editor-parte" class="w-full bg-slate-950 border border-[var(--border-color)] rounded-xl p-2.5 text-[var(--text-main)] focus:border-blue-500 focus:outline-none">
+                <option value="parte1">Parte I: Ritos Iniciais JEC</option>
+                <option value="parte2">Parte II: Turma & JECRIM</option>
+                <option value="parte3">Parte III: Integração CPC</option>
+                <option value="parte4">Parte IV: Consumo & CDC</option>
+                <option value="parte5">Parte V: Cálculos & Perícia</option>
+                <option value="parte6">Parte VI: Casos Recorrentes e Tutelas</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Barra de Variáveis Rápidas (Snippets de Anonimização) -->
+          <div class="p-3 bg-slate-950/60 rounded-xl border border-[var(--border-color)] flex flex-wrap items-center gap-2 text-xs">
+            <span class="text-slate-400 font-semibold mr-1 flex items-center gap-1">
+              <i class="fa-solid fa-code text-blue-400"></i> Inserir Variável / Snippet:
+            </span>
+            <button onclick="inserirVariavelNoEditor('[AUTOR]')" class="px-2 py-1 rounded bg-slate-800 text-amber-300 hover:bg-slate-700 font-mono text-[11px] transition">[AUTOR]</button>
+            <button onclick="inserirVariavelNoEditor('[RÉU]')" class="px-2 py-1 rounded bg-slate-800 text-amber-300 hover:bg-slate-700 font-mono text-[11px] transition">[RÉU]</button>
+            <button onclick="inserirVariavelNoEditor('[VALOR_DANO_MORAL: R$ 5.000,00]')" class="px-2 py-1 rounded bg-slate-800 text-emerald-300 hover:bg-slate-700 font-mono text-[11px] transition">[VALOR_DANO_MORAL]</button>
+            <button onclick="inserirVariavelNoEditor('[MULTA_DIARIA: R$ 200,00 limitados a R$ 10.000,00]')" class="px-2 py-1 rounded bg-slate-800 text-purple-300 hover:bg-slate-700 font-mono text-[11px] transition">[MULTA_DIARIA]</button>
+            <button onclick="inserirVariavelNoEditor('[PRAZO_CUMPRIMENTO: 5 dias]')" class="px-2 py-1 rounded bg-slate-800 text-cyan-300 hover:bg-slate-700 font-mono text-[11px] transition">[PRAZO]</button>
+            <button onclick="inserirPromptBaseUniversal()" class="px-2.5 py-1 rounded bg-blue-500/20 text-blue-300 hover:bg-blue-500/30 border border-blue-500/30 font-semibold text-[11px] transition" title="Inserir comando padrão universal com decisão-modelo de referência">
+              <i class="fa-solid fa-wand-sparkles mr-1"></i> Comando-Base com Decisão-Modelo
+            </button>
+            <button onclick="inserirPromptEmbargosExecucao()" class="px-2.5 py-1 rounded bg-purple-500/20 text-purple-300 hover:bg-purple-500/30 border border-purple-500/30 font-semibold text-[11px] transition" title="Inserir comando geral especializado para Embargos à Execução">
+              <i class="fa-solid fa-gavel mr-1"></i> Embargos à Execução Padrão
+            </button>
+            <button onclick="alternarComandoMestreNoEditor()" id="btn-toggle-mestre-editor" class="ml-auto px-2.5 py-1 rounded bg-amber-500/20 text-amber-400 border border-amber-500/30 hover:bg-amber-500/30 text-[11px] font-semibold transition">
+              <i class="fa-solid fa-shield-halved mr-1"></i> Comando-Mestre Ativo
+            </button>
+          </div>
+
+          <!-- Área Principal de Edição de Texto do Prompt -->
+          <div>
+            <div class="flex items-center justify-between mb-1.5">
+              <label class="text-xs font-bold text-[var(--text-main)] flex items-center gap-2">
+                <i class="fa-solid fa-align-left text-blue-400"></i>
+                <span>Corpo Estruturado do Prompt (Instruções da Minuta)</span>
+              </label>
+              <div class="flex items-center gap-3 text-xs">
+                <span id="editor-char-counter" class="text-slate-500 font-mono">0 caracteres</span>
+                <button onclick="copiarTextoDoEditor()" class="text-amber-400 hover:text-amber-300 font-semibold flex items-center gap-1">
+                  <i class="fa-regular fa-copy"></i> Copiar Editado
+                </button>
+              </div>
+            </div>
+            <textarea id="editor-texto-prompt" rows="12" placeholder="Selecione um prompt no acervo para editar ou digite suas instruções para os Juizados Especiais..." class="w-full p-4 bg-slate-950 border border-[var(--border-color)] rounded-xl text-xs text-slate-200 font-mono leading-relaxed focus:border-blue-500 focus:outline-none resize-y" oninput="atualizarContadorCaracteresEditor()"></textarea>
+          </div>
+
+          <!-- Ações do Estúdio -->
+          <div class="flex flex-wrap items-center justify-between gap-3 pt-2">
+            <div class="flex items-center gap-2">
+              <button onclick="enviarEditorParaGabineteIA()" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-emerald-600 to-emerald-500 hover:from-emerald-500 hover:to-emerald-400 text-white font-bold text-xs flex items-center gap-2 shadow-lg shadow-emerald-900/30 transition active:scale-95">
+                <i class="fa-solid fa-wand-magic-sparkles"></i>
+                <span>Enviar para Gabinete IA & Minutar</span>
+              </button>
+              <button onclick="exportarEditorParaMinutaIA()" class="px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 text-xs font-semibold flex items-center gap-2 transition">
+                <i class="fa-solid fa-arrow-up-right-from-square text-amber-400"></i>
+                <span>Exportar ao Minuta IA TJPB</span>
+              </button>
+            </div>
+            <span class="text-xs text-slate-400 flex items-center gap-1.5">
+              <i class="fa-solid fa-circle-check text-emerald-400"></i>
+              Pronto para execução direta no navegador
+            </span>
+          </div>
+
+        </div>
+
+      </section>
+
+      <!-- ================= ABA 3: GABINETE IA & MINUTADOR JEC ================= -->
+      <section id="aba-secao-gabinete" class="space-y-6 hidden">
+        
+        <div class="p-6 rounded-2xl bg-[var(--bg-card)] border border-emerald-500/30 shadow-2xl space-y-5">
+          
+          <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 pb-4 border-b border-[var(--border-color)]">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-lg border border-emerald-500/30">
+                <i class="fa-solid fa-wand-magic-sparkles"></i>
+              </div>
+              <div>
+                <h2 class="text-base font-bold text-[var(--text-main)] flex items-center gap-2">
+                  Gabinete IA • Minutador dos Juizados Especiais
+                  <span class="text-[10px] bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 px-2 py-0.5 rounded font-mono font-bold">gemini-2.5-flash</span>
+                </h2>
+                <p class="text-xs text-[var(--text-muted)]">Elaboração de minutas de sentenças, decisões e despachos em consonância com a Lei 9.099/95 e Enunciados FONAJE.</p>
+              </div>
+            </div>
+            <div class="flex items-center gap-2">
+              <button onclick="abrirModalImportador()" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 text-xs font-semibold flex items-center gap-1.5 transition">
+                <i class="fa-solid fa-file-arrow-up text-amber-400"></i> Importar Autos
+              </button>
+              <button onclick="limparGabinete()" class="px-2.5 py-1.5 rounded-lg bg-slate-800 hover:bg-red-900/30 text-slate-400 hover:text-red-300 border border-slate-700 text-xs transition" title="Limpar Campos">
+                <i class="fa-solid fa-trash-can"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Metadados da Minuta no JEC -->
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
+            <div>
+              <label class="block font-semibold text-[var(--text-muted)] mb-1.5 uppercase tracking-wider">Ato Judicial do JEC</label>
+              <select id="gab-tipo-ato" class="w-full bg-slate-950 border border-[var(--border-color)] rounded-xl p-2.5 text-[var(--text-main)] focus:border-emerald-500 focus:outline-none">
+                <option value="sentenca_merito">Sentença do JEC (Dispensado Relatório - Art. 38 Lei 9.099)</option>
+                <option value="sentenca_extintiva">Sentença Terminativa sem Mérito (Art. 51 Lei 9.099)</option>
+                <option value="decisao_tutela">Decisão Interlocutória / Tutela de Urgência no JEC</option>
+                <option value="despacho_audiencia">Despacho Inicial com Designação de Conciliação</option>
+                <option value="despacho_execucao">Despacho de Execução / SISBAJUD (Art. 523 CPC sem honorários)</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="block font-semibold text-[var(--text-muted)] mb-1.5 uppercase tracking-wider">Sentido do Julgamento (Dispositivo)</label>
+              <select id="gab-dispositivo" class="w-full bg-slate-950 border border-[var(--border-color)] rounded-xl p-2.5 text-amber-400 font-semibold focus:border-emerald-500 focus:outline-none">
+                <option value="Procedência Total dos Pedidos">Procedência Total</option>
+                <option value="Procedência Parcial dos Pedidos" selected>Procedência Parcial (Sucumbência Recíproca)</option>
+                <option value="Improcedência dos Pedidos">Improcedência dos Pedidos</option>
+                <option value="Deferimento de Tutela com Astreintes">Deferir Tutela c/ Astreintes e Teto</option>
+                <option value="Indeferimento de Tutela de Urgência">Indeferir Tutela de Urgência</option>
+                <option value="Extinção sem Resolução do Mérito">Extinção sem Resolução (Art. 51)</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="block font-semibold text-[var(--text-muted)] mb-1.5 uppercase tracking-wider">Parâmetros Específicos do JEC</label>
+              <input type="text" id="gab-parametros" placeholder="Ex.: Danos morais R$ 4.000; taxa SELIC; multa R$ 200/dia..." class="w-full bg-slate-950 border border-[var(--border-color)] rounded-xl p-2.5 text-[var(--text-main)] focus:border-emerald-500 focus:outline-none">
+            </div>
+          </div>
+
+          <!-- Prompt Textarea para Gabinete -->
+          <div>
+            <div class="flex items-center justify-between mb-1.5">
+              <label class="text-xs font-bold text-[var(--text-main)] flex items-center gap-2">
+                <i class="fa-solid fa-align-left text-emerald-400"></i>
+                <span>Comando Estruturado & Contexto Processual</span>
+              </label>
+              <div class="flex items-center gap-2 text-xs">
+                <button onclick="copiarPromptGabinete()" class="text-amber-400 hover:text-amber-300 font-semibold flex items-center gap-1">
+                  <i class="fa-regular fa-copy"></i> Copiar Prompt
+                </button>
+              </div>
+            </div>
+            <textarea id="gab-prompt" rows="8" placeholder="Selecione um dos 96 modelos do JEC ou importe os autos em PDF/Word para minutar..." class="w-full p-4 bg-slate-950 border border-[var(--border-color)] rounded-xl text-xs text-slate-200 font-mono leading-relaxed focus:border-emerald-500 focus:outline-none resize-y"></textarea>
+          </div>
+
+          <!-- Botões de Execução -->
+          <div class="flex flex-wrap items-center justify-between gap-3 pt-2">
+            <div class="flex items-center gap-2">
+              <button onclick="executarChamadaGemini()" id="btn-executar-ia" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-emerald-600 to-emerald-500 hover:from-emerald-500 hover:to-emerald-400 text-white font-bold text-xs sm:text-sm flex items-center gap-2 shadow-lg shadow-emerald-900/30 transition active:scale-95">
+                <i class="fa-solid fa-play"></i>
+                <span>Minutar com Gemini JEC</span>
+              </button>
+              <button onclick="exportarGabineteParaMinutaIA()" class="px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 text-xs sm:text-sm font-semibold flex items-center gap-2 transition">
+                <i class="fa-solid fa-arrow-up-right-from-square text-amber-400"></i>
+                <span>Exportar ao Minuta IA</span>
+              </button>
+            </div>
+            <span class="text-xs text-slate-500 flex items-center gap-1.5">
+              <i class="fa-solid fa-lock text-emerald-500"></i>
+              Autenticação direta sem intermediação externa
+            </span>
+          </div>
+
+          <!-- Bloco do Resultado Gerado -->
+          <div id="container-resultado-minuta" class="hidden pt-4 border-t border-[var(--border-color)] space-y-3">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-2">
+                <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                <h3 class="text-xs font-bold uppercase tracking-wider text-[var(--text-main)]">Minuta dos Juizados Especiais Gerada</h3>
+              </div>
+              <div class="flex items-center gap-2">
+                <button onclick="copiarMinutaGerada()" class="text-xs bg-slate-800 hover:bg-slate-700 text-slate-200 px-3 py-1.5 rounded-lg font-medium flex items-center gap-1.5 border border-slate-700">
+                  <i class="fa-regular fa-copy text-amber-400"></i> Copiar Minuta
+                </button>
+                <button onclick="baixarMinutaComoTxt()" class="text-xs bg-slate-800 hover:bg-slate-700 text-slate-200 px-3 py-1.5 rounded-lg font-medium flex items-center gap-1.5 border border-slate-700">
+                  <i class="fa-solid fa-download text-emerald-400"></i> Baixar .TXT
+                </button>
+              </div>
+            </div>
+            <div id="corpo-minuta-gerada" class="w-full bg-[#070A11] border border-[var(--border-color)] rounded-xl p-4 text-xs font-mono text-slate-200 whitespace-pre-wrap leading-relaxed max-h-96 overflow-y-auto scrollbar-custom shadow-inner"></div>
+          </div>
+
+        </div>
+
+      </section>
+
+    </div>
+  </main>
+
+  <!-- ================= MODAIS DO SISTEMA ================= -->
+
+  <!-- MODAL 1: IMPORTADOR DE AUTOS PROCESSUAIS (PDF / DOCX / TXT) -->
+  <div id="modal-importador" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm hidden">
+    <div class="bg-[var(--bg-card)] border border-amber-500/30 rounded-2xl w-full max-w-2xl max-h-[92vh] flex flex-col shadow-2xl overflow-hidden animate-in fade-in zoom-in-95 duration-200">
+      
+      <div class="px-6 py-4 border-b border-[var(--border-color)] flex items-center justify-between bg-slate-900/80">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center text-lg border border-amber-500/30">
+            <i class="fa-solid fa-file-arrow-up"></i>
+          </div>
+          <div>
+            <h3 class="text-base font-bold text-white">Importar Autos Processuais dos Juizados (PDF/DOCX)</h3>
+            <p class="text-[11px] text-slate-400">Extração local segura no navegador, em conformidade com a Res. CNJ 615/2025</p>
+          </div>
+        </div>
+        <button onclick="fecharModalImportador()" class="w-8 h-8 rounded-lg bg-slate-800 text-slate-400 hover:text-white flex items-center justify-center transition">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <div class="p-6 overflow-y-auto space-y-4 scrollbar-custom text-xs">
+        
+        <div onclick="document.getElementById('input-modal-arquivo').click()" class="border-2 border-dashed border-slate-700 hover:border-amber-500 bg-slate-950/60 hover:bg-amber-500/5 rounded-2xl p-6 text-center cursor-pointer transition-all">
+          <input type="file" id="input-modal-arquivo" accept=".pdf,.docx,.txt" class="hidden" onchange="processarArquivoNoModal(event)">
+          <div class="w-12 h-12 mx-auto rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center text-xl mb-2">
+            <i class="fa-solid fa-cloud-arrow-up"></i>
+          </div>
+          <p class="text-sm font-bold text-slate-200">Clique para selecionar ou arraste o processo do JEC</p>
+          <p class="text-[11px] text-slate-500 mt-0.5">Leitura em memória do navegador sem envio a servidores terceiros</p>
+          <div id="status-leitura-modal" class="text-xs text-amber-400 font-semibold mt-2.5 hidden"></div>
+        </div>
+
+        <div class="bg-slate-900/60 p-4 rounded-xl border border-[var(--border-color)] space-y-3">
+          <div class="text-[11px] font-bold text-slate-300 uppercase tracking-wider flex items-center gap-2">
+            <i class="fa-solid fa-scale-balanced text-amber-400"></i>
+            <span>Diretrizes do Magistrado do Juizado</span>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div>
+              <label class="block text-slate-400 font-medium mb-1">Ato do JEC Pretendido</label>
+              <select id="modal-tipo-ato" class="w-full bg-slate-950 border border-slate-700 rounded-lg p-2 text-slate-200">
+                <option value="sentenca_merito">Sentença (Mérito JEC)</option>
+                <option value="sentenca_extintiva">Sentença Terminativa (Art. 51)</option>
+                <option value="decisao">Decisão Interlocutória / Tutela</option>
+                <option value="despacho">Despacho com Conciliação</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-slate-400 font-medium mb-1">Dispositivo / Sentido</label>
+              <select id="modal-dispositivo" class="w-full bg-slate-950 border border-slate-700 rounded-lg p-2 text-amber-300 font-semibold">
+                <option value="Procedência Total dos pedidos">Procedência Total</option>
+                <option value="Procedência Parcial dos pedidos" selected>Procedência Parcial</option>
+                <option value="Improcedência dos pedidos">Improcedência</option>
+                <option value="Deferimento de Tutela de Urgência">Deferir Tutela de Urgência</option>
+                <option value="Indeferimento de Tutela de Urgência">Indeferir Tutela de Urgência</option>
+              </select>
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-slate-400 font-medium mb-1">Determinações Específicas (Danos, Astreintes, Prazos)</label>
+            <input type="text" id="modal-orientacoes-especificas" placeholder="Ex.: Danos morais R$ 3.000; prazo 5 dias sob pena de R$ 150/dia..." class="w-full bg-slate-950 border border-slate-700 rounded-lg p-2 text-slate-200">
+          </div>
+        </div>
+
+        <div>
+          <div class="flex items-center justify-between mb-1">
+            <label class="font-semibold text-slate-300">Texto Extraído dos Autos (Editável)</label>
+            <span id="modal-char-count" class="text-[11px] text-slate-500 font-mono">0 caracteres</span>
+          </div>
+          <textarea id="modal-texto-extraido" rows="5" placeholder="O texto extraído da petição e contestação aparecerá aqui..." class="w-full font-mono bg-slate-950 border border-[var(--border-color)] rounded-xl p-3 text-slate-300 focus:border-amber-500 focus:outline-none"></textarea>
+        </div>
+
+      </div>
+
+      <div class="px-6 py-3 border-t border-[var(--border-color)] bg-slate-900/80 flex items-center justify-between text-xs">
+        <button onclick="fecharModalImportador()" class="font-medium text-slate-400 hover:text-slate-200">Cancelar</button>
+        <div class="flex items-center gap-2">
+          <button onclick="carregarModalNoEditor()" class="bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold px-3 py-2 rounded-xl border border-slate-700 flex items-center gap-1.5 transition">
+            <i class="fa-solid fa-pen-ruler text-blue-400"></i>
+            <span>Abrir no Estúdio</span>
+          </button>
+          <button onclick="aplicarModalNoGabinete()" class="bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold px-4 py-2 rounded-xl flex items-center gap-1.5 transition">
+            <i class="fa-solid fa-wand-magic-sparkles"></i>
+            <span>Carregar no Gabinete IA</span>
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- MODAL 2: PERFIL GEMINI GERENCIADO NO SERVIDOR -->
+  <div id="modal-chaves" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm hidden">
+    <div class="bg-[var(--bg-card)] border border-[var(--border-color)] rounded-2xl w-full max-w-lg overflow-hidden shadow-2xl animate-in fade-in zoom-in-95 duration-200">
+      
+      <div class="px-6 py-4 border-b border-[var(--border-color)] flex items-center justify-between bg-slate-900/80">
+        <div class="flex items-center gap-2.5">
+          <div class="w-9 h-9 rounded-lg bg-amber-500/20 text-amber-400 flex items-center justify-center text-base border border-amber-500/30">
+            <i class="fa-solid fa-key"></i>
+          </div>
+          <div>
+            <h3 class="text-sm font-bold text-white">Serviço Gemini • Juizados Especiais</h3>
+            <p class="text-[11px] text-slate-400">Credenciais protegidas no servidor</p>
+          </div>
+        </div>
+        <button onclick="fecharModalChaves()" class="w-8 h-8 rounded-lg bg-slate-800 text-slate-400 hover:text-white flex items-center justify-center transition">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <div class="p-6 space-y-3.5 text-xs">
+        
+        <!-- Perfil principal -->
+        <label class="flex items-start p-3 bg-amber-500/10 border border-amber-500/30 rounded-xl cursor-pointer hover:bg-amber-500/15 transition">
+          <input type="radio" name="radio-chave" value="primary" checked class="mt-1 text-amber-500 focus:ring-amber-500">
+          <div class="ml-3 flex-1">
+            <div class="flex items-center justify-between">
+              <span class="font-bold text-white">Perfil 1 (servidor)</span>
+              <span class="bg-emerald-500/20 text-emerald-300 text-[10px] font-bold px-2 py-0.5 rounded border border-emerald-500/30">Ativa</span>
+            </div>
+            <p class="text-slate-400 text-[11px] mt-0.5">Credencial armazenada exclusivamente nas variáveis secretas do Worker.</p>
+          </div>
+        </label>
+
+        <!-- Perfil de reserva -->
+        <label class="flex items-start p-3 bg-slate-900/60 border border-[var(--border-color)] rounded-xl cursor-pointer hover:bg-slate-800/60 transition">
+          <input type="radio" name="radio-chave" value="secondary" class="mt-1 text-amber-500 focus:ring-amber-500">
+          <div class="ml-3 flex-1">
+            <div class="flex items-center justify-between">
+              <span class="font-bold text-white">Perfil 2 (reserva)</span>
+              <span class="bg-slate-800 text-slate-400 text-[10px] font-bold px-2 py-0.5 rounded">Standby</span>
+            </div>
+            <p class="text-slate-500 text-[11px] mt-0.5">Também protegido no servidor; nenhuma chave é enviada ao navegador.</p>
+          </div>
+        </label>
+
+        <div id="box-diagnostico-conexao" class="hidden p-2.5 rounded-lg text-[11px] border"></div>
+
+        <div class="bg-slate-900/60 border border-[var(--border-color)] rounded-xl p-3 text-slate-400 text-[11px] flex items-center justify-between">
+          <span>Chamada server-side com o modelo gemini-2.5-flash</span>
+          <button type="button" onclick="testarConexaoGemini()" id="btn-testar-ping" class="px-2.5 py-1 bg-slate-800 hover:bg-slate-700 border border-slate-700 rounded font-semibold text-slate-200 text-[10px] flex items-center gap-1.5 transition">
+            <i class="fa-solid fa-bolt text-emerald-400"></i>
+            <span>Testar Conexão</span>
+          </button>
+        </div>
+
+      </div>
+
+      <div class="px-6 py-3 border-t border-[var(--border-color)] bg-slate-900/80 flex justify-end gap-2 text-xs">
+        <button onclick="fecharModalChaves()" class="px-3 py-1.5 text-slate-400 hover:text-white">Cancelar</button>
+        <button onclick="salvarConfigChave()" class="bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold px-4 py-1.5 rounded-lg">Salvar Seleção</button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- MODAL 3: RESOLUÇÃO CNJ 615/2025 -->
+  <div id="modalRes615" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm hidden">
+    <div class="bg-[var(--bg-card)] border border-purple-500/30 rounded-2xl w-full max-w-2xl max-h-[90vh] flex flex-col shadow-2xl overflow-hidden animate-in fade-in zoom-in-95 duration-200">
+      <div class="px-6 py-4 border-b border-[var(--border-color)] flex items-center justify-between bg-slate-900/80">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-purple-500/20 text-purple-400 flex items-center justify-center text-lg border border-purple-500/30">
+            <i class="fa-solid fa-scale-unbalanced"></i>
+          </div>
+          <div>
+            <h3 class="text-base font-bold text-white">Resolução CNJ nº 615/2025 nos Juizados</h3>
+            <p class="text-[11px] text-slate-400">Diretrizes éticas e de supervisão humana no 1º Grau</p>
+          </div>
+        </div>
+        <button onclick="fecharModalRes615()" class="w-8 h-8 rounded-lg bg-slate-800 text-slate-400 hover:text-white flex items-center justify-center transition">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <div class="p-6 overflow-y-auto space-y-4 text-xs text-slate-300 leading-relaxed scrollbar-custom">
+        <div class="border border-red-500/30 rounded-xl p-4 bg-red-950/10">
+          <h4 class="font-bold text-sm text-red-400 mb-2 flex items-center gap-2"><i class="fa-solid fa-ban"></i> Vedações Absolutas</h4>
+          <ul class="space-y-1 text-slate-300">
+            <li>• Vedada qualquer IA sem revisão e supervisão humana indispensável.</li>
+            <li>• Vedada valoração preditiva ou ranqueamento algorítmico de partes.</li>
+          </ul>
+        </div>
+        <div class="border border-amber-500/30 rounded-xl p-4 bg-amber-950/10">
+          <h4 class="font-bold text-sm text-amber-400 mb-2 flex items-center gap-2"><i class="fa-solid fa-clipboard-check"></i> Condições no JEC</h4>
+          <ul class="space-y-1 text-slate-300">
+            <li>• A IA apoia a redação de minutas; o juízo de valor é exclusivo do magistrado.</li>
+            <li>• Anonimização rigorosa prévia: empregar [AUTOR], [RÉU] e siglas.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="px-6 py-3 border-t border-[var(--border-color)] bg-slate-900/80 flex justify-end gap-2 text-xs">
+        <button onclick="copiarResumo615()" class="px-3.5 py-1.5 rounded-lg bg-purple-500/20 text-purple-300 border border-purple-500/30 font-bold">Copiar Resumo</button>
+        <button onclick="fecharModalRes615()" class="px-3.5 py-1.5 rounded-lg bg-slate-800 text-slate-300">Fechar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= MODAL DE ONBOARDING & BOAS-VINDAS ================= -->
+  <div id="modalOnboarding" class="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 bg-slate-950/75 backdrop-blur-xl transition-all duration-500 ease-out">
+    <div class="bg-[var(--bg-card)] border border-amber-500/40 rounded-3xl w-full max-w-2xl max-h-[92vh] flex flex-col shadow-2xl shadow-black/90 overflow-hidden transform transition-all duration-500 scale-100 opacity-100">
+      
+      <!-- Topo Institucional -->
+      <div class="p-6 sm:p-7 pb-4 bg-gradient-to-b from-amber-500/10 via-slate-900/60 to-transparent border-b border-[var(--border-color)]">
+        <div class="flex items-center gap-3.5 mb-3">
+          <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-amber-600 via-amber-500 to-yellow-400 text-slate-950 flex items-center justify-center text-xl shadow-lg shadow-amber-500/20 shrink-0 font-black">
+            <i class="fa-solid fa-scale-balanced"></i>
+          </div>
+          <div>
+            <div class="flex items-center gap-2 flex-wrap">
+              <span class="text-[11px] font-mono uppercase tracking-widest font-bold text-amber-400 bg-amber-500/10 px-2 py-0.5 rounded border border-amber-500/20">TJPB • JUIZADOS ESPECIAIS</span>
+              <span class="text-[10px] text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-2 py-0.5 rounded flex items-center gap-1 font-medium">
+                <i class="fa-solid fa-shield-halved text-[9px]"></i> Ambiente Homologado
+              </span>
+            </div>
+            <h2 class="text-xl sm:text-2xl font-black text-white tracking-tight mt-1">
+              Soluções de Prompts • Juizados Especiais
+            </h2>
+          </div>
+        </div>
+        <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+          Autenticação confirmada. Seja muito bem-vindo(a) à central especializada em Juizados Especiais Cíveis e Criminais (Lei nº 9.099/95), concebida para otimizar o fluxo de minutas e despachos com Inteligência Artificial assistida.
+        </p>
+      </div>
+
+      <!-- Finalidade, Propósito e Entrada de Nome -->
+      <div class="p-6 sm:p-7 space-y-4 overflow-y-auto scrollbar-custom text-xs">
+        
+        <div class="p-4 rounded-2xl bg-slate-900/80 border border-slate-800 flex items-start gap-3.5">
+          <div class="w-9 h-9 rounded-xl bg-blue-500/10 border border-blue-500/20 text-blue-400 flex items-center justify-center text-base shrink-0 mt-0.5">
+            <i class="fa-solid fa-bullseye"></i>
+          </div>
+          <div class="space-y-1">
+            <h3 class="font-bold text-white text-xs sm:text-sm">Finalidade Exclusiva do JEC & JECRIM</h3>
+            <p class="text-slate-400 leading-relaxed">
+              Acervo ampliado com <strong>187 prompts homologados</strong> cobrindo todas as partes da Lei nº 9.099/95, CDC, Turmas Recursais, Enunciados FONAJE e a biblioteca completa de <strong>90 Casos Práticos de Análise Processual</strong>.
+            </p>
+          </div>
+        </div>
+
+        <div class="p-4 rounded-2xl bg-slate-900/80 border border-slate-800 flex items-start gap-3.5">
+          <div class="w-9 h-9 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 flex items-center justify-center text-base shrink-0 mt-0.5">
+            <i class="fa-solid fa-chart-line"></i>
+          </div>
+          <div class="space-y-1">
+            <h3 class="font-bold text-white text-xs sm:text-sm">Onde Queremos Chegar</h3>
+            <p class="text-slate-400 leading-relaxed">
+              Celeridade máxima no rito sumaríssimo com garantia de sentenças líquidas, combate a fracionamentos artificiosos e controle estrito contra alucinações (Resolução CNJ nº 615/2025).
+            </p>
+          </div>
+        </div>
+
+        <!-- Entrada de Nome do Servidor -->
+        <div class="pt-2">
+          <label for="inputNomeServidor" class="block text-xs font-bold text-amber-300 uppercase tracking-wider mb-2 flex items-center justify-between">
+            <span class="flex items-center gap-1.5"><i class="fa-solid fa-id-card-clip text-amber-400"></i> Como gostaria de ser chamado(a)?</span>
+            <span class="text-[10px] text-slate-500 font-normal normal-case">Digite seu primeiro nome</span>
+          </label>
+          <div class="relative">
+            <i class="fa-solid fa-user absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 text-sm"></i>
+            <input 
+              type="text" 
+              id="inputNomeServidor" 
+              maxlength="30"
+              placeholder="Ex.: Rosbon, Mariana, Carlos, Danielle..." 
+              class="w-full pl-11 pr-4 py-3 bg-slate-950 border-2 border-slate-700 focus:border-amber-500 rounded-2xl text-sm font-semibold text-white placeholder-slate-500 focus:outline-none transition shadow-inner"
+              oninput="validarNomeServidor(this.value)"
+              onkeydown="if(event.key === 'Enter') tentarConcluirOnboarding()"
+            >
+          </div>
+          <p id="dicaValidacaoNome" class="text-[11px] text-slate-500 mt-1.5 flex items-center gap-1">
+            <i class="fa-solid fa-info-circle text-[10px]"></i> Digite ao menos 2 letras para habilitar a entrada no painel.
+          </p>
+        </div>
+
+      </div>
+
+      <!-- Rodapé do Modal -->
+      <div class="p-5 sm:p-6 border-t border-[var(--border-color)] bg-slate-900/60 flex flex-col sm:flex-row items-center justify-between gap-3">
+        <span class="text-[11px] text-slate-500 flex items-center gap-1.5">
+          <i class="fa-solid fa-lock text-emerald-500"></i> Sessão local segura • Juizados Especiais
+        </span>
+        <button 
+          id="btnConfirmarAcesso" 
+          disabled 
+          onclick="concluirOnboarding()"
+          class="w-full sm:w-auto px-6 py-3 rounded-xl bg-slate-800 text-slate-500 cursor-not-allowed font-bold text-xs sm:text-sm flex items-center justify-center gap-2 transition shadow-lg"
+        >
+          <span>Acessar Soluções JEC</span>
+          <i class="fa-solid fa-arrow-right"></i>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION -->
+  <div id="toastNotification" class="fixed bottom-6 right-6 z-[60] transform translate-y-24 opacity-0 transition-all duration-300 pointer-events-none flex items-center gap-3 px-4 py-3 rounded-xl bg-slate-900 border border-amber-500/50 text-white shadow-2xl text-xs">
+    <div class="w-7 h-7 rounded-lg bg-amber-500/20 text-amber-400 flex items-center justify-center text-sm shrink-0">
+      <i class="fa-solid fa-check"></i>
+    </div>
+    <div>
+      <p id="toastTitle" class="font-bold text-white">Operação Concluída</p>
+      <p id="toastMsg" class="text-slate-400 text-[11px]">Pronto para uso.</p>
+    </div>
+  </div>
+
+  <!-- ================= SCRIPTS & BANCO DE PROMPTS JEC INTEGRADO ================= -->
+  <script>
+    /* =========================================================================
+       1. PERFIL GEMINI GERENCIADO NO WORKER
+       ========================================================================= */
+    // O navegador guarda apenas a preferência de perfil. Nenhuma chave, senha,
+    // token ou credencial é incorporada ao HTML ou persistida no dispositivo.
+    let perfilGeminiAtivo = localStorage.getItem('tjpb_gemini_profile') || "primary";
+
+    function abrirModalChaves() {
+      document.getElementById('modal-chaves').classList.remove('hidden');
+      const radios = document.getElementsByName('radio-chave');
+      for (const r of radios) {
+        if (r.value === perfilGeminiAtivo) r.checked = true;
+      }
+    }
+
+    function fecharModalChaves() {
+      document.getElementById('modal-chaves').classList.add('hidden');
+    }
+
+    function salvarConfigChave() {
+      const radios = document.getElementsByName('radio-chave');
+      for (const r of radios) {
+        if (r.checked) {
+          perfilGeminiAtivo = r.value === "secondary" ? "secondary" : "primary";
+          break;
+        }
+      }
+
+      localStorage.setItem('tjpb_gemini_profile', perfilGeminiAtivo);
+
+      const label = document.getElementById('label-chave-ativa');
+      label.textContent = perfilGeminiAtivo === 'secondary' ? "Perfil 2 (reserva)" : "Perfil 1 (servidor)";
+
+      fecharModalChaves();
+      mostrarToast("Perfil atualizado!", "A credencial permanece protegida no servidor.");
+    }
+
+    async function testarConexaoGemini() {
+      const btn = document.getElementById('btn-testar-ping');
+      const box = document.getElementById('box-diagnostico-conexao');
+
+      btn.disabled = true;
+      btn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Testando...`;
+
+      box.classList.remove('hidden');
+      box.className = "p-2.5 rounded-lg text-[11px] border bg-blue-950/40 border-blue-500/40 text-blue-200";
+      box.textContent = "Conectando ao Google Gemini para Juizados Especiais...";
+
+      try {
+        const res = await fetch('/api/gemini', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            profile: perfilGeminiAtivo,
+            model: 'gemini-2.5-flash',
+            prompt: 'Responda apenas: OK'
+          })
+        });
+
+        const data = await res.json();
+
+        if (res.ok && data.candidates?.length) {
+          box.className = "p-2.5 rounded-lg text-[11px] border bg-emerald-950/40 border-emerald-500/40 text-emerald-200 font-semibold";
+          box.innerHTML = `<i class="fa-solid fa-check-circle mr-1 text-emerald-400"></i> Conexão estabelecida com sucesso! Serviço Gemini protegido no Worker.`;
+          mostrarToast("Conexão verificada!", "Credencial validada no servidor.");
+        } else {
+          const erroMsg = data.error?.message || `Código HTTP ${res.status}`;
+          box.className = "p-2.5 rounded-lg text-[11px] border bg-amber-950/40 border-amber-500/40 text-amber-200";
+          box.innerHTML = `<strong>Aviso da API:</strong> ${erroMsg}`;
+        }
+      } catch (err) {
+        box.className = "p-2.5 rounded-lg text-[11px] border bg-red-950/40 border-red-500/40 text-red-200";
+        box.innerHTML = `<strong>Erro de rede:</strong> Verifique a conexão com a internet. (${err.message})`;
+      } finally {
+        btn.disabled = false;
+        btn.innerHTML = `<i class="fa-solid fa-bolt text-emerald-400"></i><span>Testar Conexão</span>`;
+      }
+    }
+
+    /* =========================================================================
+       2. COMANDOS UNIVERSAIS E MESTRE DO JEC & JECRIM
+       ========================================================================= */
+    const COMANDO_MESTRE_JEC = `[COMANDO-MESTRE] Atue como Assessor Jurídico Sênior e Magistrado especializado em Juizados Especiais Cíveis e Criminais, com domínio da Lei nº 9.099/95, do Código de Processo Civil e do Código de Defesa do Consumidor.
+Antes de redigir a minuta:
+1. examine integralmente os documentos disponibilizados;
+2. identifique a fase processual e a providência requerida;
+3. diferencie fatos comprovados, fatos controvertidos e simples alegações (não presuma fatos sem provas documentais);
+4. não aplique automaticamente dispositivos do CPC incompatíveis com o microssistema sumaríssimo;
+5. observe os princípios da oralidade, informalidade e celeridade (evite reproduzir longos trechos da inicial/contestação);
+6. examine preliminares antes do mérito;
+7. redija comandos lógicos, concisos e líquidos (o JEC não admite condenação ilíquida).
+[CONTROLE ANTI-ALUCINAÇÃO]: É expressamente proibido inventar número de processo, datas, valores, contratos, páginas, precedentes, súmulas ou teses jurídicas não invocadas. Quando houver lacuna indispensável que impeça a redação, utilize: "Não consta dos elementos disponibilizados informação suficiente para afirmar que [...]" em vez de criar a informação.
+[INSTRUÇÃO ESPECÍFICA DA MINUTA A SER ELABORADA AGORA]:\n\n`;
+
+    const COMANDO_FINAL_JEC = `\n\n[COMANDO FINAL PARA MINUTA DO JEC]:
+Elabore a minuta judicial completa, pronta para assinatura, baseada exclusivamente nos fatos e provas dos autos. Aplique a Lei nº 9.099/95 (dispensado relatório formal nos termos do art. 38). No dispositivo, resolva expressamente todos os pedidos, assegurando comando líquido, sem condenação em custas e honorários no 1º grau (art. 55).`;
+
+    /* =========================================================================
+       3. ACERVO EXCLUSIVO: JEC & JECRIM MASTER (96 MODELOS CONSOLIDADOS)
+       ========================================================================= */
+    const BANCO_JEC_MASTER = [
+      // PARTE 1: Ritos Iniciais JEC
+      { id: 1, parte: 'parte1', categoria: 'decisao', parteNome: 'Ritos Iniciais JEC', titulo: 'Extração e Síntese Jurídica dos Autos', norma: 'Estruturação Fática', prompt: `Analise integralmente a petição inicial, contestação, réplica e documentos disponibilizados. Não elabore decisão ainda. Produza uma ficha técnica do processo: PARTES, PRETENSÃO, FATOS, PEDIDOS, DEFESA, PROVAS, PONTOS CONTROVERTIDOS e ÔNUS PROBATÓRIO.` },
+      { id: 2, parte: 'parte1', categoria: 'decisao', parteNome: 'Ritos Iniciais JEC', titulo: 'Tutela de Urgência: Análise Completa', norma: 'Art. 300, CPC / JEC', prompt: `Analise o pedido de tutela provisória à luz do art. 300 do CPC e das particularidades do JEC. Examine probabilidade do direito, perigo de dano e reversibilidade prática. Redija decisão fixando obrigação clara, prazo e astreinte proporcional com teto limitador.` },
+      { id: 3, parte: 'parte1', categoria: 'sentenca', parteNome: 'Ritos Iniciais JEC', titulo: 'Sentença Cível: Procedimento Comum JEC', norma: 'Sentença Completa JEC', prompt: `Atue como Magistrado e elabore sentença integral no JEC. Estruture: Relatório dispensado/simplificado (art. 38), Fundamentação analítica enfrentando argumentos e Dispositivo líquido resolvendo cada pedido.` },
+      { id: 4, parte: 'parte1', categoria: 'sentenca', parteNome: 'Ritos Iniciais JEC', titulo: 'Sentença JEC Sem Relatório (Art. 38)', norma: 'Art. 38, Lei 9.099', prompt: `Analise integralmente os autos e redija sentença adequada ao art. 38 da Lei nº 9.099/95. Inicie com: "Dispensado o relatório, nos termos do art. 38 da Lei nº 9.099/95." Na fundamentação, examine preliminares, confronte provas e decida com isenção de custas em 1º grau (art. 55).` },
+      { id: 5, parte: 'parte1', categoria: 'decisao', parteNome: 'Ritos Iniciais JEC', titulo: 'Cumprimento de Sentença: SISBAJUD e Art. 523', norma: 'Art. 523 CPC / FONAJE', prompt: `Analise o cumprimento de sentença no JEC: título, liquidez, intimação e transcurso do prazo. Decida sobre penhora eletrônica SISBAJUD, aplicando a multa do art. 523 sem honorários advocatícios no 1º grau (Enunciado 97 FONAJE).` },
+      { id: 6, parte: 'parte1', categoria: 'decisao', parteNome: 'Ritos Iniciais JEC', titulo: 'Exceção de Pré-Executividade', norma: 'Súmula 393, STJ', prompt: `Analise a exceção de pré-executividade. Identifique matérias de ordem pública com prova pré-constituída (nulidade de citação, prescrição ou ilegitimidade) sem exigir garantia do juízo.` },
+      { id: 7, parte: 'parte1', categoria: 'decisao', parteNome: 'Ritos Iniciais JEC', titulo: 'Desconsideração da Personalidade Jurídica (IDPJ)', norma: 'Art. 28 CDC / Art. 50 CC', prompt: `Analise o pedido de desconsideração da personalidade jurídica. Se relação de consumo, aplique a teoria menor do art. 28, § 5º, do CDC (mero obstáculo ao ressarcimento). Redija decisão motivada.` },
+      { id: 8, parte: 'parte1', categoria: 'despacho', parteNome: 'Ritos Iniciais JEC', titulo: 'Litigância Predatória: Pesquisa CPF e Emenda no JEC', norma: 'Rec. CNJ 159/2024 • Lei 9.099', prompt: `Atue como Magistrado de Juizado Especial Cível. Redija despacho determinando certidão pormenorizada via CPF da parte autora e intimação para esclarecer fracionamento de pretensões em 15 dias.` },
+      { id: 9, parte: 'parte1', categoria: 'decisao', parteNome: 'Ritos Iniciais JEC', titulo: 'Fracionamento Indevido de Ações / Burla ao Teto do JEC', norma: 'Art. 3º, I • Enunciado 139 FONAJE', prompt: `Redija decisão interlocutória examinando fracionamento artificial de ações visando burlar o teto de 40 salários mínimos da Lei nº 9.099/95. Determine reunião ou emenda sob pena de extinção.` },
+      { id: 10, parte: 'parte1', categoria: 'despacho', parteNome: 'Ritos Iniciais JEC', titulo: 'Despacho Inicial com Audiência de Conciliação', norma: 'Arts. 16, 18, 20 Lei 9.099', prompt: `Redija despacho inicial com designação de audiência de conciliação, citação e advertências de revelia para o réu (art. 20) e extinção com custas para o autor ausente (art. 51, I).` },
+
+      // PARTE 2: Turma Recursal & JECRIM
+      { id: 11, parte: 'parte2', categoria: 'sentenca', parteNome: 'Turma & JECRIM', titulo: 'Homologação de Acordo (Art. 22)', norma: 'Art. 22, Lei 9.099', prompt: `Homologue acordo extrajudicial ou em audiência com resolução de mérito (art. 487, III, b, CPC), atribuindo eficácia de título executivo judicial no JEC.` },
+      { id: 12, parte: 'parte2', categoria: 'sentenca', parteNome: 'Turma & JECRIM', titulo: 'Ausência do Autor à Audiência', norma: 'Art. 51, I, Lei 9.099', prompt: `Verifique a ausência injustificada do autor à audiência. Redija sentença de extinção sem exame de mérito com condenação em custas processuais na forma do art. 51, I, da Lei 9.099/95.` },
+      { id: 13, parte: 'parte2', categoria: 'sentenca', parteNome: 'Turma & JECRIM', titulo: 'Incompetência por Complexidade Probatória', norma: 'Art. 51, II, Lei 9.099', prompt: `Constatada a necessidade de prova pericial complexa incompatível com a celeridade e informalidade sumaríssima, extinga o processo sem resolução de mérito remetendo as partes à Vara Cível.` },
+      { id: 14, parte: 'parte2', categoria: 'sentenca', parteNome: 'Turma & JECRIM', titulo: 'Capacidade de Pessoa Jurídica como Autora no JEC', norma: 'Art. 8º, §1º, Lei 9.099', prompt: `Verifique a legitimidade ativa de PJ (ME, EPP ou OSCIP). Ausente enquadramento legal ou certidão simplificada da Junta Comercial, extinga o feito por ilegitimidade ativa.` },
+      { id: 15, parte: 'parte2', categoria: 'decisao', parteNome: 'Turma & JECRIM', titulo: 'Vedação à Intervenção de Terceiros', norma: 'Art. 10, Lei 9.099', prompt: `Indefira pedido de denunciação da lide ou chamamento ao processo, aplicando a vedação absoluta do art. 10 da Lei nº 9.099/95.` },
+      { id: 16, parte: 'parte2', categoria: 'sentenca', parteNome: 'Turma & JECRIM', titulo: 'Controle de Revelia no JEC (Não Automática)', norma: 'Art. 20, Lei 9.099', prompt: `Ausente o réu citado, aplique os efeitos da revelia (art. 20), ressalvando que a presunção é relativa e exige verossimilhança com os documentos carreados aos autos.` },
+      { id: 17, parte: 'parte2', categoria: 'decisao', parteNome: 'Turma & JECRIM', titulo: 'Admissibilidade de Recurso Inominado', norma: 'Art. 43, Lei 9.099', prompt: `Examine tempestividade, representação e preparo em Recurso Inominado. Receba-o apenas no efeito devolutivo, salvo fundamentado risco de dano irreparável.` },
+      { id: 18, parte: 'parte2', categoria: 'decisao', parteNome: 'Turma & JECRIM', titulo: 'Deserção de Recurso Inominado (Prazo de 48h)', norma: 'Art. 42, §1º, Lei 9.099', prompt: `Não tendo sido recolhido o preparo integral no prazo improrrogável de 48 horas seguintes à interposição, declare a deserção do recurso inominado.` },
+      { id: 19, parte: 'parte2', categoria: 'decisao', parteNome: 'Turma & JECRIM', titulo: 'Embargos de Declaração no JEC (Efeito Interruptivo)', norma: 'Art. 50, Lei 9.099', prompt: `Examine os embargos declaratórios registrando expressamente o efeito interruptivo sobre o prazo recursal nos moldes do art. 50 da Lei nº 9.099/95.` },
+      { id: 20, parte: 'parte2', categoria: 'decisao', parteNome: 'Turma & JECRIM', titulo: 'Redução / Conversão de Astreintes em Perdas e Danos', norma: 'Art. 52, V, Lei 9.099', prompt: `Examine o descumprimento de obrigação de fazer. Evite enriquecimento sem causa, ajustando a multa diária para patamar razoável ou convertendo em perdas e danos.` },
+      { id: 21, parte: 'parte2', categoria: 'sentenca', parteNome: 'Turma & JECRIM', titulo: 'JECRIM: Composição dos Danos Civis', norma: 'Art. 74, Lei 9.099', prompt: `No JECRIM, homologue o acordo civil entre autor do fato e vítima, declarando extinta a punibilidade pela renúncia tácita ao direito de queixa ou representação.` },
+      { id: 22, parte: 'parte2', categoria: 'sentenca', parteNome: 'Turma & JECRIM', titulo: 'JECRIM: Homologação de Transação Penal', norma: 'Art. 76, Lei 9.099', prompt: `Homologue proposta ministerial de transação penal, fixando condições proporcionais e ressalvando que não gera efeitos condenatórios ou reincidência.` },
+      { id: 23, parte: 'parte2', categoria: 'decisao', parteNome: 'Turma & JECRIM', titulo: 'JECRIM: Sursis Processual (Suspensão Condicional)', norma: 'Art. 89, Lei 9.099', prompt: `Receba a denúncia com a suspensão condicional do processo (art. 89), fixando período de prova de 2 a 4 anos e condições legais.` },
+      { id: 24, parte: 'parte2', categoria: 'sentenca', parteNome: 'Turma & JECRIM', titulo: 'JECRIM: Extinção por Cumprimento do Período de Prova', norma: 'Art. 89, §5º', prompt: `Expirado o período de prova sem revogação, declare extinta a punibilidade do beneficiário na forma do art. 89, § 5º, da Lei 9.099/95.` },
+
+      // PARTE 3: Integração CPC Subsidiário no JEC
+      { id: 25, parte: 'parte3', categoria: 'decisao', parteNome: 'Integração CPC', titulo: 'Tutela de Urgência em Obrigação de Fazer', norma: 'Art. 300, CPC / JEC', prompt: `Defira tutela antecipada determinando obrigação de fazer precisa (restabelecimento de serviço, entrega ou emissão), fixando prazo em dias/horas e multa proporcional.` },
+      { id: 26, parte: 'parte3', categoria: 'decisao', parteNome: 'Integração CPC', titulo: 'Tutela da Evidência no JEC', norma: 'Art. 311, II, CPC', prompt: `Aprecie pedido de tutela da evidência com base em prova documental idônea e tese fixada em recurso repetitivo ou súmula vinculante.` },
+      { id: 27, parte: 'parte3', categoria: 'decisao', parteNome: 'Integração CPC', titulo: 'Indeferimento de Tutela por Ausência de Verossimilhança', norma: 'Art. 300, CPC', prompt: `Indefira pedido liminar motivadamente pela carência de substrato probatório inicial, postergando a análise para após o contraditório.` },
+      { id: 28, parte: 'parte3', categoria: 'decisao', parteNome: 'Integração CPC', titulo: 'Distribuição Dinâmica do Ônus da Prova', norma: 'Art. 373, §1º, CPC', prompt: `Aplique a teoria da distribuição dinâmica do ônus probatório diante da manifesta facilidade da parte ré em produzir a prova técnica nos autos.` },
+      { id: 29, parte: 'parte3', categoria: 'decisao', parteNome: 'Integração CPC', titulo: 'Gratuidade de Justiça para Recurso Inominado', norma: 'Art. 98 CPC • Art. 54 JEC', prompt: `Examine declaração e extratos para fins de deferimento de gratuidade de justiça adstrita ao preparo do Recurso Inominado (art. 54, parágrafo único).` },
+      { id: 30, parte: 'parte3', categoria: 'sentenca', parteNome: 'Integração CPC', titulo: 'Extinção por Coisa Julgada Material', norma: 'Art. 485, V, CPC', prompt: `Constatada a reprodução de ação anterior idêntica já transitada em julgado (mesmas partes, causa e pedidos), extinga o feito sem exame do mérito.` },
+      { id: 31, parte: 'parte3', categoria: 'sentenca', parteNome: 'Integração CPC', titulo: 'Prescrição Quinquenal (Art. 487, II)', norma: 'Art. 487, II, CPC', prompt: `Reconheça o decurso do prazo prescricional quinquenal para repetição ou reparação e julgue extinta a pretensão com resolução de mérito.` },
+      { id: 32, parte: 'parte3', categoria: 'sentenca', parteNome: 'Integração CPC', titulo: 'Improcedência por Ausência de Lastro Probatório', norma: 'Art. 373, I, CPC', prompt: `Não comprovados os fatos constitutivos da narrativa inaugural (ausência de protocolos, comprovantes ou verossimilhança), julgue os pedidos improcedentes.` },
+      { id: 33, parte: 'parte3', categoria: 'sentenca', parteNome: 'Integração CPC', titulo: 'Extinção da Execução por Quitação Integral', norma: 'Art. 924, II, CPC', prompt: `Comprovado o pagamento integral do valor executado e expedidos os alvarás ao credor, extinga a execução nos termos do art. 924, II, do CPC.` },
+
+      // PARTE 4: Relações de Consumo & CDC no JEC
+      { id: 34, parte: 'parte4', categoria: 'decisao', parteNome: 'Consumo & CDC', titulo: 'Religação de Serviço Essencial (Água/Luz)', norma: 'Art. 22, CDC', prompt: `Identifique corte de energia/água por débito pretérito. Defira tutela de urgência determinando o restabelecimento imediato em 24h sob pena de multa diária.` },
+      { id: 35, parte: 'parte4', categoria: 'decisao', parteNome: 'Consumo & CDC', titulo: 'Exclusão Liminar de Negativação (SPC/SERASA)', norma: 'Art. 43, CDC', prompt: `Impugnada a dívida, defira tutela de urgência ordenando a exclusão provisória do nome do autor dos cadastros restritivos no prazo de 5 dias.` },
+      { id: 36, parte: 'parte4', categoria: 'decisao', parteNome: 'Consumo & CDC', titulo: 'Inversão do Ônus da Prova (CDC)', norma: 'Art. 6º, VIII, CDC', prompt: `Constatada a hipossuficiência técnica do consumidor perante o prestador do serviço, decrete a inversão do ônus probatório.` },
+      { id: 37, parte: 'parte4', categoria: 'sentenca', parteNome: 'Consumo & CDC', titulo: 'Repetição de Indébito em Dobro (Tema 929 STJ)', norma: 'Art. 42, CDC', prompt: `Reconhecida a cobrança indevida contrária à boa-fé objetiva, condene o fornecedor à repetição dobrada dos valores descontados indevidamente.` },
+      { id: 38, parte: 'parte4', categoria: 'sentenca', parteNome: 'Consumo & CDC', titulo: 'Vício do Produto Não Sanado em 30 Dias', norma: 'Art. 18, CDC', prompt: `Superado o prazo legal de 30 dias na assistência técnica sem reparo, condene o fabricante/comerciante a restituir a quantia paga com danos morais.` },
+      { id: 39, parte: 'parte4', categoria: 'sentenca', parteNome: 'Consumo & CDC', titulo: 'Cancelamento / Atraso Excessivo de Voo', norma: 'Res. 400 ANAC', prompt: `Condene a companhia aérea em indenização por danos morais diante de atraso superior a 8 horas desacompanhado de assistência material.` },
+      { id: 40, parte: 'parte4', categoria: 'sentenca', parteNome: 'Consumo & CDC', titulo: 'Extravio de Bagagem em Viagem Aérea', norma: 'CDC / Convenções', prompt: `Condene o transportador em danos materiais pelos itens extraviados e danos morais pela afetação pessoal durante o período de viagem.` },
+      { id: 41, parte: 'parte4', categoria: 'sentenca', parteNome: 'Consumo & CDC', titulo: 'Golpe do PIX / Boleto Falso e Falha de Segurança', norma: 'Súmula 479, STJ', prompt: `Aplique a responsabilidade objetiva das instituições financeiras por fortuito interno em fraudes bancárias eletrônicas (Súmula 479 STJ).` },
+      { id: 42, parte: 'parte4', categoria: 'sentenca', parteNome: 'Consumo & CDC', titulo: 'Cartão de Crédito Consignado (RMC/RCC) Fraudulento', norma: 'Nulidade Contratual', prompt: `Declare nulidade de saque em cartão de crédito consignado não contratado, determine a restituição em dobro dos descontos e arbitre dano moral.` },
+      { id: 43, parte: 'parte4', categoria: 'sentenca', parteNome: 'Consumo & CDC', titulo: 'Venda Casada de Seguro Prestamista', norma: 'Art. 39, I, CDC', prompt: `Declare abusiva a venda casada de seguro atrelado compulsoriamente a contrato financeiro e determine a devolução integral das parcelas.` },
+      { id: 44, parte: 'parte4', categoria: 'sentenca', parteNome: 'Consumo & CDC', titulo: 'Teoria do Desvio Produtivo do Consumidor', norma: 'Desvio Produtivo', prompt: `Arbitre indenização por dano moral decorrente do desvio do tempo produtivo do consumidor para resolver falha reiterada criada pelo fornecedor.` },
+
+      // PARTE 5: Cálculos, Perícia Simplificada & Tutelas Especiais (89-96)
+      { id: 89, parte: 'parte5', categoria: 'decisao', parteNome: 'Cálculos & Tutelas', titulo: 'Impugnação ao Cumprimento por Excesso no JEC', norma: 'Art. 525 CPC / JEC', prompt: `Atue como Juiz no JEC. Confronte a memória do credor com os parâmetros do título executivo transitado em julgado e homologue o valor correto.` },
+      { id: 90, parte: 'parte5', categoria: 'decisao', parteNome: 'Cálculos & Tutelas', titulo: 'Impugnação aos Cálculos: Tabela Price e Amortização', norma: 'Tabela Price / JEC', prompt: `Analise cálculos envolvendo metodologia Price e amortização em confronto estrito com o título executivo para homologar a conta devida.` },
+      { id: 91, parte: 'parte5', categoria: 'decisao', parteNome: 'Cálculos & Tutelas', titulo: 'Tutela em Consignado Não Reconhecido (Suspensão)', norma: 'Art. 300 CPC / JEC', prompt: `Aprecie pedido liminar para suspensão de descontos em benefício previdenciário decorrentes de empréstimo não reconhecido.` },
+      { id: 92, parte: 'parte5', categoria: 'decisao', parteNome: 'Cálculos & Tutelas', titulo: 'Roteador Decisório Universal para Gabinetes do JEC', norma: 'Triagem Processual', prompt: `Analise os autos e direcione a minuta entre excesso de cálculo, cálculos da contadoria ou tutela em consignado com fundamentação estrita.` },
+      { id: 93, parte: 'parte5', categoria: 'decisao', parteNome: 'Cálculos & Tutelas', titulo: 'Perícia Grafotécnica / Prova Técnica Simplificada', norma: 'Art. 35 Lei 9.099', prompt: `Em contestação de assinatura, determine a realização de prova técnica simplificada com inquirição de especialista (art. 35) ou encaminhamento adequado.` },
+      { id: 94, parte: 'parte5', categoria: 'decisao', parteNome: 'Cálculos & Tutelas', titulo: 'Saldo Residual, SISBAJUD e Extinção por Pagamento', norma: 'Art. 52 Lei 9.099', prompt: `Confronte o valor homologado e os montantes levantados pelo exequente para apurar saldo residual ou declarar extinta a execução.` },
+      { id: 95, parte: 'parte5', categoria: 'decisao', parteNome: 'Cálculos & Tutelas', titulo: 'Indeferimento Fundamentado de Tutela no JEC', norma: 'Art. 300 CPC / JEC', prompt: `Elabore minuta de decisão interlocutória indeferindo o pedido liminar diante da ausência de elementos probatórios suficientes nos autos.` },
+      { id: 96, parte: 'parte5', categoria: 'decisao', parteNome: 'Cálculos & Tutelas', titulo: 'Tutela contra Plano de Saúde: Cirurgia / Tratamento Urgente', norma: 'Lei nº 9.656/98 • Rol ANS', prompt: `Aprecie pedido liminar para compelir operadora de plano de saúde a autorizar procedimento cirúrgico ou medicamento urgente prescrito por médico assistente.` },
+
+      /* =========================================================================
+         PARTE 6: TEMAS RECORRENTES & PROMPTS DE DECISÃO RÁPIDA (97 a 126)
+         ========================================================================= */
+      {
+        id: 97,
+        parte: 'parte6',
+        categoria: 'decisao',
+        parteNome: 'Casos Práticos',
+        taxonomia: 'Tutela de Urgência',
+        titulo: 'Tutela – Religação de Água',
+        norma: 'Art. 300, CPC • Serviço Essencial',
+        prompt: `Analise o processo anexo e elabore decisão sobre o pedido de tutela de urgência para restabelecimento do fornecimento de água, verificando os requisitos do art. 300 do CPC.`
+      },
+      {
+        id: 98,
+        parte: 'parte6',
+        categoria: 'decisao',
+        parteNome: 'Casos Práticos',
+        taxonomia: 'Tutela de Urgência',
+        titulo: 'Tutela – Débito de Antigo Locatário',
+        norma: 'Obrigação Propter Personam • Art. 300 CPC',
+        prompt: `Analise o processo anexo e elabore decisão sobre tutela de urgência para religação do fornecimento de água, considerando a alegação de que os débitos pertencem a antigo locatário.`
+      },
+      {
+        id: 99,
+        parte: 'parte6',
+        categoria: 'decisao',
+        parteNome: 'Casos Práticos',
+        taxonomia: 'Execução',
+        titulo: 'Conversão em Perdas e Danos',
+        norma: 'Art. 499, CPC',
+        prompt: `Analise o processo anexo e elabore decisão sobre o pedido de conversão da obrigação de fazer em perdas e danos, observando o art. 499 do CPC.`
+      },
+      {
+        id: 100,
+        parte: 'parte6',
+        categoria: 'decisao',
+        parteNome: 'Casos Práticos',
+        taxonomia: 'Tutela de Urgência',
+        titulo: 'Suspensão de Cobranças Contratuais',
+        norma: 'Art. 300, CPC',
+        prompt: `Analise o processo anexo e elabore decisão sobre tutela de urgência para suspender cobranças decorrentes de contrato cuja validade é discutida no processo.`
+      },
+      {
+        id: 101,
+        parte: 'parte6',
+        categoria: 'decisao',
+        parteNome: 'Casos Práticos',
+        taxonomia: 'Execução',
+        titulo: 'RPV contra Sociedade de Economia Mista',
+        norma: 'Regime de Execução Privado • Art. 173 CF',
+        prompt: `Analise o processo anexo e elabore decisão sobre pedido de expedição de RPV contra sociedade de economia mista, considerando sua natureza jurídica e o regime de execução aplicável.`
+      },
+      {
+        id: 102,
+        parte: 'parte6',
+        categoria: 'sentenca',
+        parteNome: 'Casos Práticos',
+        taxonomia: 'Competência',
+        titulo: 'Ausência do Autor em Audiência no JEC',
+        norma: 'Art. 51, I, Lei 9.099/95',
+        prompt: `Analise o processo anexo e elabore decisão sobre as consequências da ausência injustificada da parte autora à audiência no Juizado Especial, observando o art. 51 da Lei 9.099/95.`
+      },
+      {
+        id: 103,
+        parte: 'parte6',
+        categoria: 'sentenca',
+        parteNome: 'Casos Práticos',
+        taxonomia: 'Competência',
+        titulo: 'Citação por Edital no Juizado Especial',
+        norma: 'Art. 18, § 2º, Lei 9.099/95',
+        prompt: `Analise o processo anexo e elabore decisão sobre a competência do Juizado Especial quando necessária a citação por edital, observando o art. 18, § 2º, da Lei 9.099/95.`
+      },
+      {
+        id: 104,
+        parte: 'parte6',
+        categoria: 'decisao',
+        parteNome: 'Casos Práticos',
+        taxonomia: 'Execução',
+        titulo: 'RPV de Honorários Advocatícios Separados',
+        norma: 'Súmula Vinculante 47 • CPC',
+        prompt: `Analise o processo anexo e elabore decisão sobre a possibilidade de expedição separada de RPV referente aos honorários advocatícios.`
+      },
+      {
+        id: 105,
+        parte: 'parte6',
+        categoria: 'decisao',
+        parteNome: 'Casos Práticos',
+        taxonomia: 'Recuperação Judicial',
+        titulo: 'SISBAJUD – Crédito Extraconcursal (Recuperação Judicial)',
+        norma: 'Art. 49 c/c Art. 84, Lei 11.101/2005',
+        prompt: `Analise o processo anexo e elabore decisão sobre pedido de bloqueio via SISBAJUD para satisfação de crédito extraconcursal de empresa em recuperação judicial.`
+      },
+      {
+        id: 106,
+        parte: 'parte6',
+        categoria: 'decisao',
+        parteNome: 'Casos Práticos',
+        taxonomia: 'Relações Bancárias',
+        titulo: 'Tutela – Descontos de Empréstimo',
+        norma: 'Art. 300, CPC',
+        prompt: `Analise o processo anexo e elabore decisão sobre tutela de urgência destinada à redução ou suspensão de descontos decorrentes de empréstimo, verificando os requisitos do art. 300 do CPC.`
+      },
+      {
+        id: 107,
+        parte: 'parte6',
+        categoria: 'decisao',
+        parteNome: 'Casos Práticos',
+        taxonomia: 'Recuperação Judicial',
+        titulo: 'Recuperação Judicial – Crédito Extraconcursal e Cumprimento',
+        norma: 'Lei 11.101/2005 • Competência',
+        prompt: `Analise o processo anexo e elabore decisão sobre o prosseguimento do cumprimento de sentença envolvendo crédito extraconcursal contra empresa em recuperação judicial.`
+      },
+      {
+        id: 108,
+        parte: 'parte6',
+        categoria: 'decisao',
+        parteNome: 'Casos Práticos',
+        taxonomia: 'SISBAJUD / Penhora',
+        titulo: 'Desbloqueio de Salário via SISBAJUD',
+        norma: 'Art. 833, IV, CPC • Impenhorabilidade',
+        prompt: `Analise o processo anexo e elabore decisão sobre pedido de desbloqueio de valores constritos via SISBAJUD, diante da alegação de natureza salarial e impenhorabilidade.`
+      },
+      {
+        id: 109,
+        parte: 'parte6',
+        categoria: 'decisao',
+        parteNome: 'Casos Práticos',
+        taxonomia: 'Relações Bancárias',
+        titulo: 'Empréstimo – Limitação dos Descontos (Superendividamento)',
+        norma: 'Margem Consignável • Lei 14.181/2021',
+        prompt: `Analise o processo anexo e elabore decisão sobre tutela de urgência para limitar descontos de empréstimos incidentes sobre a remuneração da parte autora.`
+      },
+      {
+        id: 110,
+        parte: 'parte6',
+        categoria: 'decisao',
+        parteNome: 'Casos Práticos',
+        taxonomia: 'Execução',
+        titulo: 'Transferência de Veículo perante o DETRAN',
+        norma: 'Art. 134, CTB • Art. 300, CPC',
+        prompt: `Analise o processo anexo e elabore decisão sobre tutela de urgência para determinar a transferência de veículo para o nome da parte promovida.`
+      },
+      {
+        id: 111,
+        parte: 'parte6',
+        categoria: 'decisao',
+        parteNome: 'Casos Práticos',
+        taxonomia: 'Recuperação Judicial',
+        titulo: 'Crédito Concursal – Impossibilidade de SISBAJUD',
+        norma: 'Vis Attractiva • Art. 6º, Lei 11.101/2005',
+        prompt: `Analise o processo anexo e elabore decisão sobre pedido de bloqueio via SISBAJUD envolvendo crédito sujeito à recuperação judicial, adotando as providências cabíveis para habilitação do crédito.`
+      },
+      {
+        id: 112,
+        parte: 'parte6',
+        categoria: 'decisao',
+        parteNome: 'Casos Práticos',
+        taxonomia: 'Competência',
+        titulo: 'Conexão e Prevenção entre Juizados',
+        norma: 'Arts. 55 e 59, CPC • Lei 9.099/95',
+        prompt: `Analise o processo anexo e elabore decisão verificando a existência de conexão ou prevenção com processo anteriormente distribuído a outro Juizado Especial.`
+      },
+      {
+        id: 113,
+        parte: 'parte6',
+        categoria: 'decisao',
+        parteNome: 'Casos Práticos',
+        taxonomia: 'Telecomunicações',
+        titulo: 'Vouchers – Obrigação de Fazer / Substituição',
+        norma: 'Art. 497, CPC • Transporte Aéreo',
+        prompt: `Analise o processo anexo e elabore decisão sobre pedido de expedição de novos vouchers em substituição aos anteriormente concedidos e não utilizados.`
+      },
+      {
+        id: 114,
+        parte: 'parte6',
+        categoria: 'decisao',
+        parteNome: 'Casos Práticos',
+        taxonomia: 'Recuperação Judicial',
+        titulo: 'Recuperação Judicial – 123 Milhas (Efeitos)',
+        norma: 'Suspensão e Habilitação • Lei 11.101/2005',
+        prompt: `Analise o processo anexo e elabore decisão sobre os efeitos da recuperação judicial da 123 Milhas no processo e sobre a possibilidade de seu prosseguimento.`
+      },
+      {
+        id: 115,
+        parte: 'parte6',
+        categoria: 'decisao',
+        parteNome: 'Casos Práticos',
+        taxonomia: 'Saúde',
+        titulo: 'Cirurgia Reparadora Pós-Bariátrica',
+        norma: 'Tema Repetitivo STJ • Art. 300 CPC',
+        prompt: `Analise o processo anexo e elabore decisão sobre tutela de urgência para realização de cirurgia reparadora após procedimento bariátrico, verificando os requisitos do art. 300 do CPC.`
+      },
+      {
+        id: 116,
+        parte: 'parte6',
+        categoria: 'decisao',
+        parteNome: 'Casos Práticos',
+        taxonomia: 'Competência',
+        titulo: 'Redistribuição por Prevenção',
+        norma: 'Art. 59, CPC • Prevenção no PJe',
+        prompt: `Analise o processo anexo e elabore decisão sobre a necessidade de redistribuição do feito ao Juízo prevento em razão de processo anterior envolvendo as mesmas partes ou causa.`
+      },
+      {
+        id: 117,
+        parte: 'parte6',
+        categoria: 'decisao',
+        parteNome: 'Casos Práticos',
+        taxonomia: 'SISBAJUD / Penhora',
+        titulo: 'Bloqueio Cautelar via SISBAJUD',
+        norma: 'Art. 301, CPC • Poder Geral de Cautela',
+        prompt: `Analise o processo anexo e elabore decisão sobre tutela de urgência para bloqueio cautelar de valores via SISBAJUD, examinando especificamente a probabilidade do direito e o perigo de dano.`
+      },
+      {
+        id: 118,
+        parte: 'parte6',
+        categoria: 'decisao',
+        parteNome: 'Casos Práticos',
+        taxonomia: 'Relações Bancárias',
+        titulo: 'Cobrança Indevida – Restituição Imediata (Débito Automático)',
+        norma: 'Art. 300, CPC • Reversibilidade',
+        prompt: `Analise o processo anexo e elabore decisão sobre tutela de urgência para restituição de valores supostamente cobrados indevidamente mediante débito automático.`
+      },
+      {
+        id: 119,
+        parte: 'parte6',
+        categoria: 'decisao',
+        parteNome: 'Casos Práticos',
+        taxonomia: 'Relações Bancárias',
+        titulo: 'Empréstimo Não Reconhecido (Suspensão)',
+        norma: 'Art. 300, CPC • Verba Alimentar',
+        prompt: `Analise o processo anexo e elabore decisão sobre tutela de urgência para suspensão de descontos de empréstimo que a parte autora afirma não ter contratado.`
+      },
+      {
+        id: 120,
+        parte: 'parte6',
+        categoria: 'decisao',
+        parteNome: 'Casos Práticos',
+        taxonomia: 'Tutela de Urgência',
+        titulo: 'Passagens Aéreas – Obrigação de Emitir',
+        norma: 'Art. 497, CPC • CDC',
+        prompt: `Analise o processo anexo e elabore decisão sobre tutela de urgência para obrigar a empresa demandada a emitir as passagens aéreas contratadas.`
+      },
+      {
+        id: 121,
+        parte: 'parte6',
+        categoria: 'decisao',
+        parteNome: 'Casos Práticos',
+        taxonomia: 'Arrematação',
+        titulo: 'Homologação de Arrematação Parcelada',
+        norma: 'Art. 895, CPC • Leilão Judicial',
+        prompt: `Analise o processo anexo e elabore decisão sobre a homologação da arrematação parcelada do imóvel, verificando a regularidade do leilão e o cumprimento das exigências do CPC.`
+      },
+      {
+        id: 122,
+        parte: 'parte6',
+        categoria: 'decisao',
+        parteNome: 'Casos Práticos',
+        taxonomia: 'Embargos e Exceções',
+        titulo: 'Embargos de Declaração contra Interlocutória no JEC',
+        norma: 'Art. 48, Lei 9.099/95 • Enunciados FONAJE',
+        prompt: `Analise o processo anexo e elabore decisão sobre o cabimento de embargos de declaração contra decisão interlocutória no âmbito do Juizado Especial, considerando a Lei 9.099/95.`
+      },
+      {
+        id: 123,
+        parte: 'parte6',
+        categoria: 'decisao',
+        parteNome: 'Casos Práticos',
+        taxonomia: 'Tutela de Urgência',
+        titulo: 'Negativação por Débito de Água Contestado',
+        norma: 'Art. 43 CDC • Súmula 385 STJ',
+        prompt: `Analise o processo anexo e elabore decisão sobre tutela de urgência para retirada do nome da parte autora dos cadastros de inadimplentes em razão de débito de água cuja legitimidade é contestada.`
+      },
+      {
+        id: 124,
+        parte: 'parte6',
+        categoria: 'decisao',
+        parteNome: 'Casos Práticos',
+        taxonomia: 'Arrematação',
+        titulo: 'Arrematação – Ordem de Preferência entre Credores',
+        norma: 'Art. 908, CPC • Preferência Tributária',
+        prompt: `Analise o processo anexo e elabore decisão sobre homologação da arrematação e ordem de preferência entre os credores, considerando especialmente créditos tributários e demais créditos incidentes sobre o imóvel.`
+      },
+      {
+        id: 125,
+        parte: 'parte6',
+        categoria: 'decisao',
+        parteNome: 'Casos Práticos',
+        taxonomia: 'SISBAJUD / Penhora',
+        titulo: 'Bloqueio Cautelar contra Empresa em Crise',
+        norma: 'Art. 300 e 301, CPC • Insolvência',
+        prompt: `Analise o processo anexo e elabore decisão sobre tutela de urgência para bloqueio cautelar de valores da empresa promovida, verificando se existem elementos concretos que demonstrem risco ao resultado útil do processo.`
+      },
+      {
+        id: 126,
+        parte: 'parte6',
+        categoria: 'decisao',
+        parteNome: 'Casos Práticos',
+        taxonomia: 'Relações Bancárias',
+        titulo: 'Empréstimo Não Reconhecido c/ Depósito Judicial',
+        norma: 'Cautela e Boa-fé • Art. 300, § 1º, CPC',
+        prompt: `Analise o processo anexo e elabore decisão sobre tutela de urgência para suspensão dos descontos de empréstimos não reconhecidos pela parte autora, avaliando a possibilidade de condicionamento da medida ao depósito judicial dos valores.`
+      },
+
+      /* =========================================================================
+         PARTE VI (CONTINUAÇÃO): 30 NOVOS PROMPTS PRÁTICOS (127 a 156)
+         ========================================================================= */
+      {
+        id: 127,
+        parte: 'parte6',
+        categoria: 'decisao',
+        parteNome: 'Casos Práticos',
+        taxonomia: 'SISBAJUD / Penhora',
+        titulo: 'Penhora de Pensão por Morte',
+        norma: 'Art. 833, IV, CPC • Caráter Alimentar',
+        prompt: `Analise o processo anexo e elabore decisão sobre pedido de penhora de valores recebidos a título de pensão por morte, verificando sua natureza alimentar e eventual impenhorabilidade.`
+      },
+      {
+        id: 128,
+        parte: 'parte6',
+        categoria: 'decisao',
+        parteNome: 'Casos Práticos',
+        taxonomia: 'SISBAJUD / Penhora',
+        titulo: 'Desbloqueio de FGTS e Abono Salarial',
+        norma: 'Art. 833, IV, CPC • Lei 8.036/90',
+        prompt: `Analise o processo anexo e elabore decisão sobre pedido de desbloqueio de valores constritos, verificando se correspondem a FGTS ou abono e se estão protegidos pela impenhorabilidade.`
+      },
+      {
+        id: 129,
+        parte: 'parte6',
+        categoria: 'decisao',
+        parteNome: 'Casos Práticos',
+        taxonomia: 'Embargos e Exceções',
+        titulo: 'Astreintes – Manutenção / Não Redução da Multa',
+        norma: 'Art. 537, § 1º, CPC • Eficácia Coercitiva',
+        prompt: `Analise o processo anexo e elabore decisão sobre embargos à execução que questionam astreintes fixadas pelo descumprimento de tutela, verificando se há fundamento para afastar ou reduzir a multa.`
+      },
+      {
+        id: 130,
+        parte: 'parte6',
+        categoria: 'decisao',
+        parteNome: 'Casos Práticos',
+        taxonomia: 'Execução',
+        titulo: 'Multa por Ato Atentatório à Dignidade da Justiça',
+        norma: 'Art. 774, CPC • Cooperação Processual',
+        prompt: `Analise o processo anexo e elabore decisão verificando se a conduta da parte configura ato atentatório à dignidade da Justiça e se cabe aplicação de multa.`
+      },
+      {
+        id: 131,
+        parte: 'parte6',
+        categoria: 'decisao',
+        parteNome: 'Casos Práticos',
+        taxonomia: 'SISBAJUD / Penhora',
+        titulo: 'Penhora sobre Faturamento da Empresa',
+        norma: 'Art. 866, CPC • Menor Onerosidade',
+        prompt: `Analise o processo anexo e elabore decisão sobre pedido de penhora de percentual do faturamento da empresa executada, verificando os requisitos legais para adoção da medida.`
+      },
+      {
+        id: 132,
+        parte: 'parte6',
+        categoria: 'decisao',
+        parteNome: 'Casos Práticos',
+        taxonomia: 'Competência',
+        titulo: 'Citação por Hora Certa no Juizado Especial',
+        norma: 'Art. 18, Lei 9.099/95 • Enunciados FONAJE',
+        prompt: `Analise o processo anexo e elabore decisão sobre pedido de citação por hora certa no âmbito do Juizado Especial, verificando sua compatibilidade com o rito da Lei 9.099/95.`
+      },
+      {
+        id: 133,
+        parte: 'parte6',
+        categoria: 'decisao',
+        parteNome: 'Casos Práticos',
+        taxonomia: 'Embargos e Exceções',
+        titulo: 'Exceção de Pré-Executividade – Obrigação Solidária',
+        norma: 'Súmula 393 STJ • Solidariedade Passiva',
+        prompt: `Analise o processo anexo e elabore decisão sobre exceção de pré-executividade fundada na inexistência ou inexigibilidade de obrigação solidária, examinando se a matéria pode ser conhecida sem dilação probatória.`
+      },
+      {
+        id: 134,
+        parte: 'parte6',
+        categoria: 'decisao',
+        parteNome: 'Casos Práticos',
+        taxonomia: 'Embargos e Exceções',
+        titulo: 'Pedido de Reconsideração de Decisão',
+        norma: 'Preclusão Pro Judicato • Fatos Novos',
+        prompt: `Analise o processo anexo e elabore decisão sobre pedido de reconsideração de decisão anterior, verificando se foram apresentados fatos ou fundamentos novos capazes de justificar sua modificação.`
+      },
+      {
+        id: 135,
+        parte: 'parte6',
+        categoria: 'decisao',
+        parteNome: 'Casos Práticos',
+        taxonomia: 'Relações Bancárias',
+        titulo: 'Limitação de Descontos – Lei nº 11.699',
+        norma: 'Margem de Servidor Público • Legislação Estadual',
+        prompt: `Analise o processo anexo e elabore decisão sobre pedido de limitação dos descontos incidentes em conta corrente de servidor público, considerando a legislação aplicável e os documentos apresentados.`
+      },
+      {
+        id: 136,
+        parte: 'parte6',
+        categoria: 'decisao',
+        parteNome: 'Casos Práticos',
+        taxonomia: 'Saúde',
+        titulo: 'Medicamento de Uso Domiciliar – Plano de Saúde',
+        norma: 'Lei 9.656/98 • Rol ANS • Art. 300 CPC',
+        prompt: `Analise o processo anexo e elabore decisão sobre tutela de urgência para fornecimento de medicamento de uso domiciliar por plano de saúde, verificando a cobertura contratual e os requisitos do art. 300 do CPC.`
+      },
+      {
+        id: 137,
+        parte: 'parte6',
+        categoria: 'decisao',
+        parteNome: 'Casos Práticos',
+        taxonomia: 'Telecomunicações',
+        titulo: 'Multa de Fidelidade – Telefonia / Internet',
+        norma: 'Regulamentação ANATEL • CDC',
+        prompt: `Analise o processo anexo e elabore decisão sobre tutela de urgência para suspensão ou retirada de multa de fidelidade cobrada por operadora de telefonia.`
+      },
+      {
+        id: 138,
+        parte: 'parte6',
+        categoria: 'decisao',
+        parteNome: 'Casos Práticos',
+        taxonomia: 'Telecomunicações',
+        titulo: 'Reativação de Plano de Telefonia (Pré-pago / Pós-pago)',
+        norma: 'Alteração Unilateral • CDC',
+        prompt: `Analise o processo anexo e elabore decisão sobre pedido de reativação de plano de telefonia pré-pago que teria sido alterado unilateralmente para modalidade pós-paga.`
+      },
+      {
+        id: 139,
+        parte: 'parte6',
+        categoria: 'decisao',
+        parteNome: 'Casos Práticos',
+        taxonomia: 'Tutela de Urgência',
+        titulo: 'Tutela para Expedição de Diploma – Indeferimento',
+        norma: 'Ausência de Periculum • Art. 300 CPC',
+        prompt: `Analise o processo anexo e elabore decisão sobre pedido de tutela de urgência para expedição de diploma, verificando se estão demonstradas a probabilidade do direito e a urgência.`
+      },
+      {
+        id: 140,
+        parte: 'parte6',
+        categoria: 'decisao',
+        parteNome: 'Casos Práticos',
+        taxonomia: 'Tutela de Urgência',
+        titulo: 'Tutela para Entrega de Diploma e Histórico – Deferimento',
+        norma: 'Retenção Ilícita • Art. 300 CPC',
+        prompt: `Analise o processo anexo e elabore decisão sobre tutela de urgência para determinar que instituição de ensino entregue diploma e histórico escolar à parte autora.`
+      },
+      {
+        id: 141,
+        parte: 'parte6',
+        categoria: 'decisao',
+        parteNome: 'Casos Práticos',
+        taxonomia: 'SISBAJUD / Penhora',
+        titulo: 'Pesquisa Patrimonial pelo Sistema SNIPER',
+        norma: 'Diligências Executivas • CNJ',
+        prompt: `Analise o processo anexo e elabore decisão sobre pedido de pesquisa patrimonial pelo sistema SNIPER, verificando sua necessidade e adequação diante das diligências executivas já realizadas.`
+      },
+      {
+        id: 142,
+        parte: 'parte6',
+        categoria: 'decisao',
+        parteNome: 'Casos Práticos',
+        taxonomia: 'Tutela de Urgência',
+        titulo: 'Débito de Água – Retirada de Restrição nos Órgãos de Proteção',
+        norma: 'Art. 43, CDC • Súmula 385 STJ',
+        prompt: `Analise o processo anexo e elabore decisão sobre tutela de urgência para retirada de restrição decorrente de fatura de água cuja exigibilidade é contestada.`
+      },
+      {
+        id: 143,
+        parte: 'parte6',
+        categoria: 'decisao',
+        parteNome: 'Casos Práticos',
+        taxonomia: 'Tutela de Urgência',
+        titulo: 'Rescisão Contratual – Suspensão de Cobranças Futuras',
+        norma: 'Art. 300, CPC • CDC',
+        prompt: `Analise o processo anexo e elabore decisão sobre tutela de urgência para suspender cobranças posteriores ao pedido de rescisão contratual.`
+      },
+      {
+        id: 144,
+        parte: 'parte6',
+        categoria: 'decisao',
+        parteNome: 'Casos Práticos',
+        taxonomia: 'Tutela de Urgência',
+        titulo: 'Negativação por Dívida Desconhecida',
+        norma: 'Fato Negativo • Súmula 385 STJ',
+        prompt: `Analise o processo anexo e elabore decisão sobre tutela de urgência para retirada de restrição creditícia quando a parte autora afirma desconhecer a dívida.`
+      },
+      {
+        id: 145,
+        parte: 'parte6',
+        categoria: 'decisao',
+        parteNome: 'Casos Práticos',
+        taxonomia: 'Relações Bancárias',
+        titulo: 'Bloqueio de Conta do Autor por Instituição Financeira',
+        norma: 'Art. 300, CPC • Conta de Pagamento',
+        prompt: `Analise o processo anexo e elabore decisão sobre tutela de urgência para desbloqueio de conta bancária ou conta de pagamento da parte autora, verificando a justificativa apresentada pela instituição financeira.`
+      },
+      {
+        id: 146,
+        parte: 'parte6',
+        categoria: 'decisao',
+        parteNome: 'Casos Práticos',
+        taxonomia: 'Embargos e Exceções',
+        titulo: 'Exceção de Pré-Executividade – Falta de Intimação Pessoal',
+        norma: 'Súmula 410, STJ • Exigibilidade de Astreintes',
+        prompt: `Analise o processo anexo e elabore decisão sobre exceção de pré-executividade fundada na ausência de intimação pessoal para cumprimento de obrigação de fazer e seus reflexos sobre a cobrança de astreintes.`
+      },
+      {
+        id: 147,
+        parte: 'parte6',
+        categoria: 'decisao',
+        parteNome: 'Casos Práticos',
+        taxonomia: 'Execução',
+        titulo: 'Desconsideração da Personalidade Jurídica (Situação Suspensa)',
+        norma: 'Art. 28 CDC • Art. 50 CC • Encerramento Irregular',
+        prompt: `Analise o processo anexo e elabore decisão sobre pedido de desconsideração da personalidade jurídica quando a situação cadastral da empresa executada consta como suspensa.`
+      },
+      {
+        id: 148,
+        parte: 'parte6',
+        categoria: 'decisao',
+        parteNome: 'Casos Práticos',
+        taxonomia: 'SISBAJUD / Penhora',
+        titulo: 'Desbloqueio de Salário da Executada',
+        norma: 'Art. 833, IV, CPC • Prova de Origem Salarial',
+        prompt: `Analise o processo anexo e elabore decisão sobre pedido de desbloqueio de valores encontrados em conta da executada, verificando a comprovação de que possuem origem salarial.`
+      },
+      {
+        id: 149,
+        parte: 'parte6',
+        categoria: 'decisao',
+        parteNome: 'Casos Práticos',
+        taxonomia: 'Relações Bancárias',
+        titulo: 'Estorno e Bloqueio de Descontos em Conta-Salário',
+        norma: 'Art. 300, CPC • Retenção Ilícita',
+        prompt: `Analise o processo anexo e elabore decisão sobre tutela de urgência para impedir novos descontos em conta-salário e determinar o estorno de valores já debitados.`
+      },
+      {
+        id: 150,
+        parte: 'parte6',
+        categoria: 'decisao',
+        parteNome: 'Casos Práticos',
+        taxonomia: 'Tutela de Urgência',
+        titulo: 'Consórcio – Suspensão das Parcelas Mensais',
+        norma: 'Art. 300, CPC • Vício de Consentimento',
+        prompt: `Analise o processo anexo e elabore decisão sobre tutela de urgência para suspensão do pagamento das parcelas de contrato de consórcio, verificando a existência dos requisitos do art. 300 do CPC.`
+      },
+      {
+        id: 151,
+        parte: 'parte6',
+        categoria: 'decisao',
+        parteNome: 'Casos Práticos',
+        taxonomia: 'Tutela de Urgência',
+        titulo: 'Vício Oculto – Envio de Técnico pelo Fornecedor',
+        norma: 'Art. 18, CDC • Obrigação de Fazer',
+        prompt: `Analise o processo anexo e elabore decisão sobre tutela de urgência para determinar que o fornecedor envie técnico para verificar possível vício oculto no produto adquirido.`
+      },
+      {
+        id: 152,
+        parte: 'parte6',
+        categoria: 'decisao',
+        parteNome: 'Casos Práticos',
+        taxonomia: 'Competência',
+        titulo: 'Incompetência para Execução em Outro Juizado',
+        norma: 'Art. 52, IV, Lei 9.099/95 • Competência Funcional',
+        prompt: `Analise o processo anexo e elabore decisão verificando a competência para processamento da execução quando o título ou processo originário está vinculado a outro Juizado.`
+      },
+      {
+        id: 153,
+        parte: 'parte6',
+        categoria: 'decisao',
+        parteNome: 'Casos Práticos',
+        taxonomia: 'Competência',
+        titulo: 'Processo Anterior Extinto e Prevenção',
+        norma: 'Art. 286, II, CPC • Distribuição por Dependência',
+        prompt: `Analise o processo anexo e elabore decisão verificando se processo anteriormente extinto gera prevenção e justifica a redistribuição da nova demanda ao Juízo originário.`
+      },
+      {
+        id: 154,
+        parte: 'parte6',
+        categoria: 'decisao',
+        parteNome: 'Casos Práticos',
+        taxonomia: 'Execução',
+        titulo: 'RPV contra a CAGEPA',
+        norma: 'Sociedade de Economia Mista • Art. 100 CF',
+        prompt: `Analise o processo anexo e elabore decisão sobre pedido de expedição de RPV contra a CAGEPA, verificando se a empresa está submetida ao regime constitucional de precatórios e requisições de pequeno valor.`
+      },
+      {
+        id: 155,
+        parte: 'parte6',
+        categoria: 'decisao',
+        parteNome: 'Casos Práticos',
+        taxonomia: 'Recuperação Judicial',
+        titulo: '123 Milhas – Tutela e Recuperação Judicial',
+        norma: 'Lei 11.101/2005 • Suspensão / Concurso',
+        prompt: `Analise o processo anexo e elabore decisão sobre tutela de urgência formulada contra a 123 Milhas, considerando os efeitos da recuperação judicial sobre a obrigação discutida e sobre o prosseguimento da demanda.`
+      },
+      {
+        id: 156,
+        parte: 'parte6',
+        categoria: 'decisao',
+        parteNome: 'Casos Práticos',
+        taxonomia: 'Tutela de Urgência',
+        titulo: 'Tutela de Viagem Futura – Ausência de Urgência Imediata',
+        norma: 'Art. 300, CPC • Cognição Sumária',
+        prompt: `Analise o processo anexo e elabore decisão sobre tutela relacionada a viagem ou serviço turístico futuro, verificando concretamente se a proximidade do evento caracteriza perigo de dano suficiente para antecipação da tutela.`
+      },
+
+      /* =========================================================================
+         PARTE VI (CONTINUAÇÃO 2): 30 NOVOS PROMPTS PROCESSUAIS & REUTILIZÁVEIS (157 a 186)
+         + PROMPT DE EMBARGOS À EXECUÇÃO COMPLETO (187)
+         ========================================================================= */
+      {
+        id: 157,
+        parte: 'parte6',
+        categoria: 'decisao',
+        parteNome: 'Casos Práticos',
+        taxonomia: 'Embargos e Exceções',
+        titulo: 'Astreintes – Exigibilidade da Multa Cominatória',
+        norma: 'Art. 537 CPC • Art. 52 Lei 9.099/95',
+        prompt: `Analise o processo anexo e elabore decisão verificando se estão presentes os requisitos para cobrança das astreintes decorrentes do descumprimento de obrigação de fazer.`
+      },
+      {
+        id: 158,
+        parte: 'parte6',
+        categoria: 'decisao',
+        parteNome: 'Casos Práticos',
+        taxonomia: 'Embargos e Exceções',
+        titulo: 'Astreintes – Intimação Pessoal (Súmula 410 STJ)',
+        norma: 'Súmula 410, STJ • Exigibilidade',
+        prompt: `Analise o processo anexo e elabore decisão verificando se houve intimação pessoal do devedor para cumprimento da obrigação de fazer e quais os reflexos sobre a exigibilidade das astreintes.`
+      },
+      {
+        id: 159,
+        parte: 'parte6',
+        categoria: 'decisao',
+        parteNome: 'Casos Práticos',
+        taxonomia: 'Embargos e Exceções',
+        titulo: 'Embargos à Execução – Multa Cominatória',
+        norma: 'Art. 52, IX Lei 9.099 • Art. 537, § 1º CPC',
+        prompt: `Analise o processo anexo e elabore decisão sobre embargos à execução que questionam a cobrança de multa cominatória pelo descumprimento de tutela.`
+      },
+      {
+        id: 160,
+        parte: 'parte6',
+        categoria: 'decisao',
+        parteNome: 'Casos Práticos',
+        taxonomia: 'Competência',
+        titulo: 'Nulidade de Citação – Terceiro Recebe Correspondência',
+        norma: 'Art. 18, II Lei 9.099 • Enunciados FONAJE',
+        prompt: `Analise o processo anexo e elabore decisão sobre alegação de nulidade da citação fundada no recebimento da correspondência por pessoa diversa da parte demandada.`
+      },
+      {
+        id: 161,
+        parte: 'parte6',
+        categoria: 'decisao',
+        parteNome: 'Casos Práticos',
+        taxonomia: 'Embargos e Exceções',
+        titulo: 'Embargos de Declaração – Nulidade da Citação',
+        norma: 'Art. 48 Lei 9.099 • Vício de Citação',
+        prompt: `Analise o processo anexo e elabore decisão sobre embargos de declaração que alegam omissão quanto à nulidade da citação.`
+      },
+      {
+        id: 162,
+        parte: 'parte6',
+        categoria: 'decisao',
+        parteNome: 'Casos Práticos',
+        taxonomia: 'Embargos e Exceções',
+        titulo: 'Embargos de Declaração – Inexistência de Vícios (Rejeição)',
+        norma: 'Art. 48 Lei 9.099 • Art. 1.022 CPC',
+        prompt: `Analise o processo anexo e elabore decisão rejeitando os embargos de declaração caso não estejam presentes omissão, contradição, obscuridade ou erro material.`
+      },
+      {
+        id: 163,
+        parte: 'parte6',
+        categoria: 'decisao',
+        parteNome: 'Casos Práticos',
+        taxonomia: 'Embargos e Exceções',
+        titulo: 'Pedido de Reconsideração sem Fato Novo',
+        norma: 'Preclusão Consumativa / Pro Judicato',
+        prompt: `Analise o processo anexo e elabore decisão sobre pedido de reconsideração que apenas repete argumentos anteriormente examinados, verificando se existe fato novo capaz de alterar a decisão.`
+      },
+      {
+        id: 164,
+        parte: 'parte6',
+        categoria: 'decisao',
+        parteNome: 'Casos Práticos',
+        taxonomia: 'Tutela de Urgência',
+        titulo: 'Tutela – Ausência de Perigo de Dano',
+        norma: 'Art. 300 CPC • Periculum In Mora Inexistente',
+        prompt: `Analise o processo anexo e elabore decisão sobre tutela de urgência, verificando especificamente se existe perigo de dano concreto, atual e demonstrado nos autos.`
+      },
+      {
+        id: 165,
+        parte: 'parte6',
+        categoria: 'decisao',
+        parteNome: 'Casos Práticos',
+        taxonomia: 'Tutela de Urgência',
+        titulo: 'Tutela – Ausência de Probabilidade do Direito',
+        norma: 'Art. 300 CPC • Fumus Boni Iuris Ausente',
+        prompt: `Analise o processo anexo e elabore decisão sobre tutela de urgência, verificando especificamente se os documentos apresentados demonstram a probabilidade do direito alegado.`
+      },
+      {
+        id: 166,
+        parte: 'parte6',
+        categoria: 'decisao',
+        parteNome: 'Casos Práticos',
+        taxonomia: 'Tutela de Urgência',
+        titulo: 'Tutela – Requisitos Cumulativos do Art. 300 do CPC',
+        norma: 'Art. 300, caput e § 3º CPC',
+        prompt: `Analise o processo anexo e elabore decisão sobre tutela de urgência, examinando separadamente a probabilidade do direito, o perigo de dano e a reversibilidade da medida.`
+      },
+      {
+        id: 167,
+        parte: 'parte6',
+        categoria: 'decisao',
+        parteNome: 'Casos Práticos',
+        taxonomia: 'Tutela de Urgência',
+        titulo: 'Tutela Parcialmente Deferida',
+        norma: 'Art. 300 CPC • Proporcionalidade e Menor Onerosidade',
+        prompt: `Analise o processo anexo e elabore decisão verificando se o pedido de tutela pode ser deferido apenas parcialmente, limitando a medida ao necessário para afastar o risco imediato.`
+      },
+      {
+        id: 168,
+        parte: 'parte6',
+        categoria: 'decisao',
+        parteNome: 'Casos Práticos',
+        taxonomia: 'Relações Bancárias',
+        titulo: 'Empréstimo – Depósito Judicial das Parcelas Controvertidas',
+        norma: 'Art. 300, § 1º CPC • Contracautela',
+        prompt: `Analise o processo anexo e elabore decisão verificando se a suspensão dos descontos de empréstimo deve ser condicionada ao depósito judicial das parcelas controvertidas.`
+      },
+      {
+        id: 169,
+        parte: 'parte6',
+        categoria: 'decisao',
+        parteNome: 'Casos Práticos',
+        taxonomia: 'Relações Bancárias',
+        titulo: 'Empréstimo – Ausência de Prova da Contratação',
+        norma: 'Art. 300 CPC • Fato Negativo',
+        prompt: `Analise o processo anexo e elabore decisão sobre tutela para suspensão de empréstimo quando os documentos iniciais não permitem confirmar a regularidade da contratação.`
+      },
+      {
+        id: 170,
+        parte: 'parte6',
+        categoria: 'decisao',
+        parteNome: 'Casos Práticos',
+        taxonomia: 'Relações Bancárias',
+        titulo: 'Descontos Bancários – Mínimo Existencial (Superendividamento)',
+        norma: 'Lei 14.181/2021 • Dignidade da Pessoa Humana',
+        prompt: `Analise o processo anexo e elabore decisão sobre limitação de descontos bancários incidentes sobre remuneração, considerando a necessidade de preservação dos recursos indispensáveis à subsistência.`
+      },
+      {
+        id: 171,
+        parte: 'parte6',
+        categoria: 'decisao',
+        parteNome: 'Casos Práticos',
+        taxonomia: 'Relações Bancárias',
+        titulo: 'Conta-Salário – Descontos Automáticos Indevidos',
+        norma: 'Art. 649 / 833 CPC • Retenção Salarial',
+        prompt: `Analise o processo anexo e elabore decisão sobre a legalidade da manutenção de descontos automáticos diretamente em conta utilizada para recebimento de salário.`
+      },
+      {
+        id: 172,
+        parte: 'parte6',
+        categoria: 'decisao',
+        parteNome: 'Casos Práticos',
+        taxonomia: 'SISBAJUD / Penhora',
+        titulo: 'SISBAJUD – Verba Impenhorável (Liberação Imediata)',
+        norma: 'Art. 833, IV CPC • Verba Alimentar',
+        prompt: `Analise o processo anexo e elabore decisão verificando se os valores bloqueados pelo SISBAJUD possuem natureza impenhorável e se devem ser imediatamente liberados.`
+      },
+      {
+        id: 173,
+        parte: 'parte6',
+        categoria: 'decisao',
+        parteNome: 'Casos Práticos',
+        taxonomia: 'SISBAJUD / Penhora',
+        titulo: 'SISBAJUD – Ônus da Prova da Impenhorabilidade',
+        norma: 'Art. 854, § 3º, I CPC • Ônus do Executado',
+        prompt: `Analise o processo anexo e elabore decisão verificando se a parte executada comprovou documentalmente a origem salarial ou impenhorável dos valores bloqueados.`
+      },
+      {
+        id: 174,
+        parte: 'parte6',
+        categoria: 'decisao',
+        parteNome: 'Casos Práticos',
+        taxonomia: 'SISBAJUD / Penhora',
+        titulo: 'Penhora – Benefício Previdenciário (INSS)',
+        norma: 'Art. 833, IV CPC • Precedentes STJ',
+        prompt: `Analise o processo anexo e elabore decisão verificando a possibilidade de penhora de valores provenientes de benefício previdenciário.`
+      },
+      {
+        id: 175,
+        parte: 'parte6',
+        categoria: 'decisao',
+        parteNome: 'Casos Práticos',
+        taxonomia: 'SISBAJUD / Penhora',
+        titulo: 'Penhora de Faturamento – Excepcionalidade da Medida',
+        norma: 'Art. 866 CPC • Menor Onerosidade',
+        prompt: `Analise o processo anexo e elabore decisão sobre penhora de faturamento empresarial, examinando a excepcionalidade da medida e a existência de outras formas de satisfação da execução.`
+      },
+      {
+        id: 176,
+        parte: 'parte6',
+        categoria: 'decisao',
+        parteNome: 'Casos Práticos',
+        taxonomia: 'SISBAJUD / Penhora',
+        titulo: 'SNIPER – Diligências Prévias e Subsídios',
+        norma: 'Ordem de Preferência do Art. 835 CPC • CNJ',
+        prompt: `Analise o processo anexo e elabore decisão sobre pesquisa patrimonial pelo SNIPER, verificando se foram previamente utilizadas as ferramentas ordinárias de localização de bens.`
+      },
+      {
+        id: 177,
+        parte: 'parte6',
+        categoria: 'decisao',
+        parteNome: 'Casos Práticos',
+        taxonomia: 'Execução',
+        titulo: 'Desconsideração – Situação Cadastral Irregular ou Baixada',
+        norma: 'Art. 28 CDC • Art. 50 CC • Dissolução Irregular',
+        prompt: `Analise o processo anexo e elabore decisão sobre desconsideração da personalidade jurídica, verificando se a situação cadastral irregular ou suspensa da empresa, associada aos demais elementos dos autos, autoriza a medida.`
+      },
+      {
+        id: 178,
+        parte: 'parte6',
+        categoria: 'decisao',
+        parteNome: 'Casos Práticos',
+        taxonomia: 'Recuperação Judicial',
+        titulo: 'Recuperação Judicial – Natureza Concursal ou Extraconcursal',
+        norma: 'Arts. 49 e 84, Lei 11.101/2005',
+        prompt: `Analise o processo anexo e elabore decisão identificando se o crédito executado possui natureza concursal ou extraconcursal e estabelecendo as consequências processuais dessa classificação.`
+      },
+      {
+        id: 179,
+        parte: 'parte6',
+        categoria: 'decisao',
+        parteNome: 'Casos Práticos',
+        taxonomia: 'Recuperação Judicial',
+        titulo: 'Recuperação Judicial – Expedição de Certidão de Crédito',
+        norma: 'Habilitação no Juízo Recuperacional • Lei 11.101',
+        prompt: `Analise o processo anexo e elabore decisão verificando se, diante da impossibilidade de atos constritivos, deve ser expedida certidão para habilitação do crédito na recuperação judicial.`
+      },
+      {
+        id: 180,
+        parte: 'parte6',
+        categoria: 'decisao',
+        parteNome: 'Casos Práticos',
+        taxonomia: 'Recuperação Judicial',
+        titulo: 'Recuperação Judicial – Atos Constritivos e Vis Attractiva',
+        norma: 'Competência do Juízo da Recuperação • Art. 6º Lei 11.101',
+        prompt: `Analise o processo anexo e elabore decisão verificando se é possível realizar bloqueio ou outro ato de constrição patrimonial contra empresa submetida à recuperação judicial.`
+      },
+      {
+        id: 181,
+        parte: 'parte6',
+        categoria: 'decisao',
+        parteNome: 'Casos Práticos',
+        taxonomia: 'Arrematação',
+        titulo: 'Arrematação – Regularidade do Procedimento de Leilão',
+        norma: 'Arts. 886 a 903, CPC • Validade da Arrematação',
+        prompt: `Analise o processo anexo e elabore decisão verificando a regularidade do procedimento de leilão antes da homologação da arrematação.`
+      },
+      {
+        id: 182,
+        parte: 'parte6',
+        categoria: 'decisao',
+        parteNome: 'Casos Práticos',
+        taxonomia: 'Arrematação',
+        titulo: 'Arrematação – Pagamento Parcelado (Art. 895 CPC)',
+        norma: 'Art. 895, CPC • Proposta Parcelada em Leilão',
+        prompt: `Analise o processo anexo e elabore decisão verificando se a proposta de pagamento parcelado apresentada pelo arrematante atende aos requisitos legais.`
+      },
+      {
+        id: 183,
+        parte: 'parte6',
+        categoria: 'decisao',
+        parteNome: 'Casos Práticos',
+        taxonomia: 'Arrematação',
+        titulo: 'Arrematação – Concurso e Ordem de Preferência de Credores',
+        norma: 'Art. 908, CPC • Preferência Legal',
+        prompt: `Analise o processo anexo e elabore decisão estabelecendo a ordem de preferência entre os credores sobre o produto da arrematação.`
+      },
+      {
+        id: 184,
+        parte: 'parte6',
+        categoria: 'decisao',
+        parteNome: 'Casos Práticos',
+        taxonomia: 'Arrematação',
+        titulo: 'Arrematação – Crédito Tributário e IPTU Propter Rem',
+        norma: 'Art. 130, parágrafo único CTN • Art. 908 CPC',
+        prompt: `Analise o processo anexo e elabore decisão sobre a destinação do produto da arrematação quando houver crédito tributário de IPTU concorrendo com outros créditos.`
+      },
+      {
+        id: 185,
+        parte: 'parte6',
+        categoria: 'decisao',
+        parteNome: 'Casos Práticos',
+        taxonomia: 'Competência',
+        titulo: 'Prevenção após Extinção do Processo Anterior',
+        norma: 'Art. 286, II CPC • Prevenção no PJe',
+        prompt: `Analise o processo anexo e elabore decisão verificando se a extinção do processo anteriormente distribuído afasta ou mantém a prevenção do Juízo para a nova demanda.`
+      },
+      {
+        id: 186,
+        parte: 'parte6',
+        categoria: 'decisao',
+        parteNome: 'Casos Práticos',
+        taxonomia: 'Competência',
+        titulo: 'Competência – Cotejo Analítico entre Processos (Conexão/Prevenção)',
+        norma: 'Arts. 55 e 59 CPC • Redistribuição',
+        prompt: `Analise os processos anexos e elabore decisão sobre conexão e prevenção, comparando partes, pedidos e causas de pedir e indicando objetivamente se há fundamento para redistribuição.`
+      },
+      {
+        id: 187,
+        parte: 'parte6',
+        categoria: 'decisao',
+        parteNome: 'Casos Práticos',
+        taxonomia: 'Embargos e Exceções',
+        titulo: 'Embargos à Execução – Análise Completa de Matérias e Título',
+        norma: 'Art. 52, IX Lei 9.099/95 • Art. 525 e 917 CPC',
+        prompt: `Analise o processo anexo e elabore decisão sobre os embargos à execução, confrontando individualmente as alegações do embargante com o título executivo, os cálculos apresentados e a manifestação da parte contrária. Verifique a existência de excesso de execução, inexigibilidade da obrigação, pagamento, nulidades ou outras matérias suscitadas. Ao final, acolha, acolha parcialmente ou rejeite os embargos, conforme o que resultar da análise dos autos, indicando de forma objetiva os efeitos sobre a execução.`
+      }
+    ];
+
+    /* =========================================================================
+       4. CONTROLE DE NAVEGAÇÃO ENTRE ABAS
+       ========================================================================= */
+    let abaAtual = 'catalogo';
+    let atoJECAtual = 'todos';
+    let parteJECAtual = 'todas';
+    let taxonomiaPraticaAtual = 'todas';
+    let termoBuscaJEC = '';
+    let totalCopias = 0;
+    let editorIncluiComandoMestre = true;
+
+    function navegarAba(abaId) {
+      abaAtual = abaId;
+      document.getElementById('aba-secao-catalogo').classList.toggle('hidden', abaId !== 'catalogo');
+      document.getElementById('aba-secao-editor').classList.toggle('hidden', abaId !== 'editor');
+      document.getElementById('aba-secao-gabinete').classList.toggle('hidden', abaId !== 'gabinete');
+
+      document.querySelectorAll('.nav-modulo-btn').forEach(btn => {
+        btn.classList.remove('active', 'bg-amber-500/10', 'text-amber-400', 'border', 'border-amber-500/30');
+        btn.classList.add('text-[var(--text-muted)]');
+      });
+
+      const btnAtivo = document.getElementById(`nav-btn-${abaId}`);
+      if (btnAtivo) {
+        btnAtivo.classList.remove('text-[var(--text-muted)]');
+        btnAtivo.classList.add('active', 'bg-amber-500/10', 'text-amber-400', 'border', 'border-amber-500/30');
+      }
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    /* =========================================================================
+       5. RENDERIZADOR DO ACERVO JEC & JECRIM
+       ========================================================================= */
+    function renderizarPromptsJEC() {
+      const container = document.getElementById('containerJECPrompts');
+      const noResults = document.getElementById('noResultsJEC');
+      const contador = document.getElementById('contadorJECDisplay');
+      const badgeTotal = document.getElementById('badge-total-jec');
+
+      if (badgeTotal) badgeTotal.innerText = BANCO_JEC_MASTER.length;
+
+      const filtrados = BANCO_JEC_MASTER.filter(p => {
+        const condAto = (atoJECAtual === 'todos') || (p.categoria === atoJECAtual);
+        const condParte = (parteJECAtual === 'todas') || (p.parte === parteJECAtual);
+        const condTaxonomia = (taxonomiaPraticaAtual === 'todas') || (p.taxonomia === taxonomiaPraticaAtual);
+        const textoBusca = `${p.titulo} ${p.norma} ${p.prompt} ${p.parteNome} ${p.id} ${p.taxonomia || ''}`.toLowerCase();
+        const condBusca = !termoBuscaJEC || textoBusca.includes(termoBuscaJEC);
+        return condAto && condParte && condTaxonomia && condBusca;
+      });
+
+      contador.innerText = `Exibindo ${filtrados.length} de ${BANCO_JEC_MASTER.length} modelos de Juizados`;
+
+      if (filtrados.length === 0) {
+        container.innerHTML = '';
+        noResults.classList.remove('hidden');
+        return;
+      }
+
+      noResults.classList.add('hidden');
+      container.innerHTML = filtrados.map(p => {
+        const badgeAto = obterEstiloBadgeAto(p.categoria);
+        const iconeAto = obterIconeAto(p.categoria);
+        const rotuloAto = rotuloAtoJEC(p.categoria);
+
+        return `
+          <div class="p-5 rounded-2xl bg-[var(--bg-card)] border border-[var(--border-color)] hover:border-amber-500/40 transition-all flex flex-col justify-between group glow-hover h-full">
+            <div>
+              <div class="flex items-center justify-between gap-2 mb-3">
+                <div class="flex items-center gap-1.5">
+                  <span class="w-6 h-6 rounded-lg bg-amber-500/20 text-amber-300 flex items-center justify-center text-[10px] font-mono font-black border border-amber-500/30">#${p.id}</span>
+                  <span class="text-[9px] uppercase font-bold px-2 py-0.5 rounded flex items-center gap-1 ${badgeAto}">
+                    <i class="${iconeAto} text-[8px]"></i> ${rotuloAto}
+                  </span>
+                </div>
+                <span class="text-[10px] font-mono text-slate-400 bg-slate-900 px-2 py-0.5 rounded border border-[var(--border-color)] truncate max-w-[140px]" title="${p.norma}">${destacarTexto(p.norma, termoBuscaJEC)}</span>
+              </div>
+
+              <h3 class="text-xs sm:text-sm font-bold text-[var(--text-main)] group-hover:text-amber-300 transition-colors mb-2 leading-tight">
+                ${destacarTexto(p.titulo, termoBuscaJEC)}
+              </h3>
+
+              <div class="flex items-center gap-1.5 mb-2.5 flex-wrap">
+                <span class="text-[10px] text-amber-500/90 font-semibold flex items-center gap-1">
+                  <i class="fa-solid fa-folder-tree text-[9px]"></i> ${p.parteNome}
+                </span>
+                ${p.taxonomia ? `<span class="text-[9px] bg-slate-800 text-cyan-300 px-1.5 py-0.5 rounded border border-cyan-500/20 font-mono">${destacarTexto(p.taxonomia, termoBuscaJEC)}</span>` : ''}
+              </div>
+
+              <div class="relative bg-[#070A11] p-3 rounded-xl border border-[var(--border-color)] mb-4 text-[11px] font-mono text-slate-300 leading-relaxed h-24 overflow-hidden">
+                <div>${destacarTexto(p.prompt, termoBuscaJEC)}</div>
+                <div class="absolute inset-x-0 bottom-0 h-8 bg-gradient-to-t from-[#070A11] to-transparent pointer-events-none"></div>
+              </div>
+            </div>
+
+            <div class="flex items-center justify-between pt-3 border-t border-[var(--border-color)] mt-auto gap-2">
+              <button onclick="abrirPromptNoEditor(${p.id})" class="px-2.5 py-1.5 rounded-lg text-xs bg-blue-500/10 hover:bg-blue-500/20 text-blue-300 border border-blue-500/30 flex items-center gap-1 transition" title="Editar este modelo no Estúdio">
+                <i class="fa-solid fa-pen-to-square text-blue-400"></i>
+                <span>Editar</span>
+              </button>
+              <button onclick="carregarPromptNoGabinete(${p.id})" class="px-2.5 py-1.5 rounded-lg text-xs bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 flex items-center gap-1 transition" title="Carregar no Gabinete IA">
+                <i class="fa-solid fa-wand-magic-sparkles text-emerald-400"></i>
+                <span>Minutar</span>
+              </button>
+              <button onclick="copiarPromptJECDireto(${p.id}, this)" class="px-3 py-1.5 rounded-lg text-xs bg-amber-500/10 hover:bg-amber-500/20 text-amber-300 border border-amber-500/30 font-bold transition flex items-center gap-1 active:scale-95">
+                <i class="fa-regular fa-copy"></i>
+                <span>Copiar</span>
+              </button>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function obterEstiloBadgeAto(cat) {
+      switch(cat) {
+        case 'despacho': return 'bg-blue-500/10 text-blue-400 border border-blue-500/30';
+        case 'decisao': return 'bg-amber-500/10 text-amber-400 border border-amber-500/30';
+        case 'sentenca': return 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/30';
+        default: return 'bg-slate-500/10 text-slate-400 border border-slate-500/30';
+      }
+    }
+
+    function obterIconeAto(cat) {
+      switch(cat) {
+        case 'despacho': return 'fa-solid fa-pen-nib';
+        case 'decisao': return 'fa-solid fa-gavel';
+        case 'sentenca': return 'fa-solid fa-scroll';
+        default: return 'fa-solid fa-file';
+      }
+    }
+
+    function rotuloAtoJEC(cat) {
+      switch(cat) {
+        case 'despacho': return 'Despacho JEC';
+        case 'decisao': return 'Decisão / Tutela';
+        case 'sentenca': return 'Sentença JEC';
+        default: return cat;
+      }
+    }
+
+    function destacarTexto(texto, termo) {
+      if (!termo) return texto;
+      const regex = new RegExp(`(${termo})`, 'gi');
+      return texto.replace(regex, '<mark class="bg-amber-500/30 text-amber-200 px-0.5 rounded">$1</mark>');
+    }
+
+    function filtrarAtoJEC(ato) {
+      atoJECAtual = ato;
+      document.querySelectorAll('.tab-ato-jec').forEach(btn => {
+        btn.classList.remove('bg-amber-500/20', 'text-amber-300', 'border-amber-500/30', 'active');
+        btn.classList.add('bg-slate-800', 'text-slate-300');
+      });
+      if (window.event && window.event.currentTarget) {
+        window.event.currentTarget.classList.remove('bg-slate-800', 'text-slate-300');
+        window.event.currentTarget.classList.add('bg-amber-500/20', 'text-amber-300', 'border-amber-500/30', 'active');
+      }
+      renderizarPromptsJEC();
+    }
+
+    function filtrarParteEspecifica(parte) {
+      parteJECAtual = parte;
+      taxonomiaPraticaAtual = 'todas';
+      navegarAba('catalogo');
+      atualizarBotoesTaxonomia();
+      renderizarPromptsJEC();
+    }
+
+    function filtrarTaxonomiaPratica(tax) {
+      taxonomiaPraticaAtual = tax;
+      parteJECAtual = 'todas';
+      atualizarBotoesTaxonomia();
+      renderizarPromptsJEC();
+    }
+
+    function atualizarBotoesTaxonomia() {
+      document.querySelectorAll('.tax-btn').forEach(btn => {
+        btn.classList.remove('bg-amber-500/20', 'text-amber-300', 'border-amber-500/30', 'active', 'font-semibold');
+        btn.classList.add('bg-slate-800/80', 'text-slate-300');
+        if (taxonomiaPraticaAtual === 'todas' && btn.textContent.trim().toLowerCase() === 'todas') {
+          btn.classList.add('bg-amber-500/20', 'text-amber-300', 'border-amber-500/30', 'active', 'font-semibold');
+          btn.classList.remove('bg-slate-800/80', 'text-slate-300');
+        } else if (btn.textContent.trim() === taxonomiaPraticaAtual) {
+          btn.classList.add('bg-amber-500/20', 'text-amber-300', 'border-amber-500/30', 'active', 'font-semibold');
+          btn.classList.remove('bg-slate-800/80', 'text-slate-300');
+        }
+      });
+    }
+
+    function pesquisarPromptsJEC(val) {
+      termoBuscaJEC = val.trim().toLowerCase();
+      const clearBtn = document.getElementById('clearSearchBtn');
+      if (termoBuscaJEC.length > 0) clearBtn.classList.remove('hidden');
+      else clearBtn.classList.add('hidden');
+      renderizarPromptsJEC();
+    }
+
+    function limparBuscaJEC() {
+      document.getElementById('catalogSearchInput').value = '';
+      termoBuscaJEC = '';
+      atoJECAtual = 'todos';
+      parteJECAtual = 'todas';
+      taxonomiaPraticaAtual = 'todas';
+      atualizarBotoesTaxonomia();
+      document.getElementById('clearSearchBtn').classList.add('hidden');
+      renderizarPromptsJEC();
+    }
+
+    function focarBuscaCatalogo() {
+      navegarAba('catalogo');
+      const input = document.getElementById('catalogSearchInput');
+      input.focus();
+    }
+
+    /* =========================================================================
+       6. ESTÚDIO DE EDIÇÃO DE PROMPTS DO JEC
+       ========================================================================= */
+    function abrirPromptNoEditor(id) {
+      const item = BANCO_JEC_MASTER.find(p => p.id === id);
+      if (!item) return;
+
+      document.getElementById('editor-titulo').value = `[JEC #${item.id}] ${item.titulo}`;
+      document.getElementById('editor-categoria').value = item.categoria;
+      document.getElementById('editor-norma').value = item.norma;
+      document.getElementById('editor-parte').value = item.parte;
+
+      const textoCompleto = editorIncluiComandoMestre 
+        ? COMANDO_MESTRE_JEC + item.prompt + COMANDO_FINAL_JEC 
+        : item.prompt;
+
+      document.getElementById('editor-texto-prompt').value = textoCompleto;
+      atualizarContadorCaracteresEditor();
+      navegarAba('editor');
+      mostrarToast("Aberto no Estúdio!", `Modelo #${item.id} carregado para edição.`);
+    }
+
+    function clonarPromptParaNovo() {
+      document.getElementById('editor-titulo').value = "Novo Prompt Customizado - JEC";
+      document.getElementById('editor-categoria').value = "sentenca";
+      document.getElementById('editor-norma').value = "Lei nº 9.099/95";
+      document.getElementById('editor-parte').value = "parte1";
+      document.getElementById('editor-texto-prompt').value = COMANDO_MESTRE_JEC + "Insira aqui as instruções do caso...\n" + COMANDO_FINAL_JEC;
+      atualizarContadorCaracteresEditor();
+      mostrarToast("Novo Rascunho", "Modelo limpo preparado para edição.");
+    }
+
+    const PROMPT_BASE_UNIVERSAL_MODELO = `Analise o processo anexo e, tomando como referência a decisão-modelo anexada, elabore decisão judicial adaptada ao caso concreto, preservando apenas os fundamentos aplicáveis e adequando relatório, fundamentação e dispositivo às particularidades dos autos.`;
+
+    const PROMPT_EMBARGOS_EXECUCAO_COMPLETO = `Analise o processo anexo e elabore decisão sobre os embargos à execução, confrontando individualmente as alegações do embargante com o título executivo, os cálculos apresentados e a manifestação da parte contrária. Verifique a existência de excesso de execução, inexigibilidade da obrigação, pagamento, nulidades ou outras matérias suscitadas. Ao final, acolha, acolha parcialmente ou rejeite os embargos, conforme o que resultar da análise dos autos, indicando de forma objetiva os efeitos sobre a execução.`;
+
+    function inserirPromptBaseUniversal() {
+      const textarea = document.getElementById('editor-texto-prompt');
+      const start = textarea.selectionStart;
+      const end = textarea.selectionEnd;
+      const texto = textarea.value;
+
+      textarea.value = texto.substring(0, start) + PROMPT_BASE_UNIVERSAL_MODELO + "\n\n" + texto.substring(end);
+      textarea.selectionStart = textarea.selectionEnd = start + PROMPT_BASE_UNIVERSAL_MODELO.length + 2;
+      textarea.focus();
+      atualizarContadorCaracteresEditor();
+      mostrarToast("Comando-Base Inserido!", "Instrução universal com decisão-modelo adicionada ao editor.");
+    }
+
+    function inserirPromptEmbargosExecucao() {
+      const textarea = document.getElementById('editor-texto-prompt');
+      const start = textarea.selectionStart;
+      const end = textarea.selectionEnd;
+      const texto = textarea.value;
+
+      textarea.value = texto.substring(0, start) + PROMPT_EMBARGOS_EXECUCAO_COMPLETO + "\n\n" + texto.substring(end);
+      textarea.selectionStart = textarea.selectionEnd = start + PROMPT_EMBARGOS_EXECUCAO_COMPLETO.length + 2;
+      textarea.focus();
+      atualizarContadorCaracteresEditor();
+      mostrarToast("Embargos à Execução Inserido!", "Instrução completa para embargos à execução adicionada ao editor.");
+    }
+
+    function inserirVariavelNoEditor(variavel) {
+      const textarea = document.getElementById('editor-texto-prompt');
+      const start = textarea.selectionStart;
+      const end = textarea.selectionEnd;
+      const texto = textarea.value;
+
+      textarea.value = texto.substring(0, start) + " " + variavel + " " + texto.substring(end);
+      textarea.selectionStart = textarea.selectionEnd = start + variavel.length + 2;
+      textarea.focus();
+      atualizarContadorCaracteresEditor();
+    }
+
+    function alternarComandoMestreNoEditor() {
+      editorIncluiComandoMestre = !editorIncluiComandoMestre;
+      const btn = document.getElementById('btn-toggle-mestre-editor');
+      const textarea = document.getElementById('editor-texto-prompt');
+      let texto = textarea.value;
+
+      if (editorIncluiComandoMestre) {
+        btn.innerHTML = `<i class="fa-solid fa-shield-halved mr-1"></i> Comando-Mestre Ativo`;
+        btn.className = "ml-auto px-2.5 py-1 rounded bg-amber-500/20 text-amber-400 border border-amber-500/30 hover:bg-amber-500/30 text-[11px] font-semibold transition";
+        if (!texto.includes('[COMANDO-MESTRE]')) {
+          textarea.value = COMANDO_MESTRE_JEC + texto;
+        }
+      } else {
+        btn.innerHTML = `<i class="fa-solid fa-shield mr-1"></i> Sem Comando-Mestre`;
+        btn.className = "ml-auto px-2.5 py-1 rounded bg-slate-800 text-slate-400 border border-slate-700 text-[11px] font-semibold transition";
+        textarea.value = texto.replace(COMANDO_MESTRE_JEC, '').trim();
+      }
+      atualizarContadorCaracteresEditor();
+    }
+
+    function atualizarContadorCaracteresEditor() {
+      const t = document.getElementById('editor-texto-prompt').value;
+      document.getElementById('editor-char-counter').textContent = `${t.length} caracteres`;
+    }
+
+    function copiarTextoDoEditor() {
+      const t = document.getElementById('editor-texto-prompt').value;
+      if (!t) return;
+      executarCopiaSegura(t);
+      mostrarToast("Copiado!", "Texto do prompt editado copiado para a área de transferência.");
+    }
+
+    function salvarPromptPersonalizadoLocal() {
+      const titulo = document.getElementById('editor-titulo').value.trim() || "Prompt Customizado";
+      const texto = document.getElementById('editor-texto-prompt').value.trim();
+      if (!texto) {
+        mostrarToast("Atenção", "O texto do prompt não pode estar vazio.");
+        return;
+      }
+      localStorage.setItem('tjpb_jec_prompt_custom', JSON.stringify({ titulo, texto, data: new Date().toISOString() }));
+      mostrarToast("Salvo Localmente!", "Rascunho persistido com sucesso nesta máquina.");
+    }
+
+    function enviarEditorParaGabineteIA() {
+      const texto = document.getElementById('editor-texto-prompt').value.trim();
+      const cat = document.getElementById('editor-categoria').value;
+      if (!texto) {
+        mostrarToast("Atenção", "Preencha o prompt antes de enviar ao Gabinete.");
+        return;
+      }
+
+      document.getElementById('gab-prompt').value = texto;
+      if (cat === 'sentenca') document.getElementById('gab-tipo-ato').value = 'sentenca_merito';
+      else if (cat === 'decisao') document.getElementById('gab-tipo-ato').value = 'decisao_tutela';
+      else document.getElementById('gab-tipo-ato').value = 'despacho_audiencia';
+
+      navegarAba('gabinete');
+      mostrarToast("Transferido com Sucesso!", "Prompt pronto para minutar no Gabinete IA.");
+    }
+
+    function exportarEditorParaMinutaIA() {
+      const texto = document.getElementById('editor-texto-prompt').value.trim();
+      if (!texto) {
+        mostrarToast("Atenção", "Preencha o prompt antes de exportar.");
+        return;
+      }
+      executarCopiaSegura(texto);
+      window.open('https://minutaia.tjpb.jus.br/login', '_blank');
+      mostrarToast("Copiado!", "Prompt transferido. Abrindo Minuta IA TJPB...");
+    }
+
+    /* =========================================================================
+       7. GABINETE IA & MINUTADOR GEMINI
+       ========================================================================= */
+    function carregarPromptNoGabinete(id) {
+      const item = BANCO_JEC_MASTER.find(p => p.id === id);
+      if (!item) return;
+
+      const textoFinal = COMANDO_MESTRE_JEC + item.prompt + COMANDO_FINAL_JEC;
+      document.getElementById('gab-prompt').value = textoFinal;
+
+      if (item.categoria === 'sentenca') document.getElementById('gab-tipo-ato').value = 'sentenca_merito';
+      else if (item.categoria === 'decisao') document.getElementById('gab-tipo-ato').value = 'decisao_tutela';
+      else document.getElementById('gab-tipo-ato').value = 'despacho_audiencia';
+
+      navegarAba('gabinete');
+      mostrarToast("Prompt Carregado!", `"${item.titulo}" pronto para minutar.`);
+    }
+
+    async function executarChamadaGemini() {
+      const prompt = document.getElementById('gab-prompt').value.trim();
+      const btn = document.getElementById('btn-executar-ia');
+      const containerRes = document.getElementById('container-resultado-minuta');
+      const corpoRes = document.getElementById('corpo-minuta-gerada');
+
+      if (!prompt) {
+        mostrarToast("Aviso", "Insira o comando ou importe os autos no Gabinete IA.");
+        return;
+      }
+
+      btn.disabled = true;
+      btn.classList.add('opacity-70');
+      btn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Elaborando Minuta do JEC...`;
+
+      containerRes.classList.remove('hidden');
+      corpoRes.textContent = "Conectando ao modelo gemini-2.5-flash e aplicando o microssistema da Lei nº 9.099/95... Aguarde alguns instantes.";
+
+      const modelos = ["gemini-2.5-flash", "gemini-1.5-flash"];
+      let sucesso = false;
+      let ultimoErro = "";
+
+      for (const modelo of modelos) {
+        try {
+          const res = await fetchComRetry('/api/gemini', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              profile: perfilGeminiAtivo,
+              model: modelo,
+              prompt,
+              systemInstruction: "Você é assessor jurídico e juiz de Juizados Especiais do Tribunal de Justiça da Paraíba (TJPB). Redija minutas concisas, com comandos líquidos, fundamentação direta, observância da Lei nº 9.099/95, Enunciados FONAJE e Resolução CNJ nº 615/2025. Dispensado o relatório formal nos termos do art. 38 da Lei 9.099/95."
+            })
+          });
+
+          const data = await res.json();
+
+          if (data.error) {
+            throw new Error(data.error.message || `Erro API (${data.error.code})`);
+          }
+
+          const textoMinuta = data.candidates?.[0]?.content?.parts?.[0]?.text;
+
+          if (textoMinuta) {
+            corpoRes.textContent = textoMinuta;
+            mostrarToast("Minuta Concluída!", `Minuta elaborada via ${modelo}!`);
+            sucesso = true;
+            break;
+          }
+        } catch (e) {
+          console.warn(`Tentativa com ${modelo} falhou:`, e);
+          ultimoErro = e.message;
+        }
+      }
+
+      if (!sucesso) {
+        corpoRes.textContent = `Não foi possível gerar a minuta com o perfil selecionado.\n\nDetalhes do erro: ${ultimoErro}\n\nDica: teste a conexão no botão de serviço Gemini no topo.`;
+        mostrarToast("Erro na Chamada", "Não foi possível obter resposta da API Gemini.");
+      }
+
+      btn.disabled = false;
+      btn.classList.remove('opacity-70');
+      btn.innerHTML = `<i class="fa-solid fa-play"></i><span>Minutar com Gemini JEC</span>`;
+    }
+
+    async function fetchComRetry(url, options, tentativas = 4) {
+      let delay = 1000;
+      for (let i = 0; i < tentativas; i++) {
+        try {
+          const res = await fetch(url, options);
+          if (res.ok) return res;
+          if (res.status === 429 || res.status >= 500) {
+            await new Promise(r => setTimeout(r, delay));
+            delay *= 2;
+            continue;
+          }
+          return res;
+        } catch (err) {
+          if (i === tentativas - 1) throw err;
+          await new Promise(r => setTimeout(r, delay));
+          delay *= 2;
+        }
+      }
+      throw new Error("Limite de tentativas de rede excedido.");
+    }
+
+    function copiarPromptGabinete() {
+      const p = document.getElementById('gab-prompt').value;
+      if (!p) return;
+      executarCopiaSegura(p);
+      mostrarToast("Copiado!", "Prompt do Gabinete transferido.");
+    }
+
+    function exportarGabineteParaMinutaIA() {
+      const p = document.getElementById('gab-prompt').value;
+      if (!p) {
+        mostrarToast("Aviso", "Preencha o prompt antes de exportar.");
+        return;
+      }
+      executarCopiaSegura(p);
+      window.open('https://minutaia.tjpb.jus.br/login', '_blank');
+      mostrarToast("Copiado!", "Prompt transferido. Abrindo Minuta IA TJPB...");
+    }
+
+    function copiarMinutaGerada() {
+      const t = document.getElementById('corpo-minuta-gerada').textContent;
+      if (!t) return;
+      executarCopiaSegura(t);
+      mostrarToast("Minuta Copiada!", "Texto pronto para colar no PJe.");
+    }
+
+    function baixarMinutaComoTxt() {
+      const t = document.getElementById('corpo-minuta-gerada').textContent;
+      if (!t) return;
+      const blob = new Blob([t], { type: "text/plain;charset=utf-8" });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = `minuta_jec_${new Date().toISOString().slice(0,10)}.txt`;
+      a.click();
+      mostrarToast("Download Concluído", "Arquivo TXT gerado com sucesso.");
+    }
+
+    function limparGabinete() {
+      document.getElementById('gab-prompt').value = '';
+      document.getElementById('gab-parametros').value = '';
+      document.getElementById('container-resultado-minuta').classList.add('hidden');
+      document.getElementById('corpo-minuta-gerada').textContent = '';
+      mostrarToast("Gabinete Limpo", "Campos restaurados.");
+    }
+
+    /* =========================================================================
+       8. IMPORTADOR DE ARQUIVOS (PDF, DOCX, TXT)
+       ========================================================================= */
+    function abrirModalImportador() {
+      document.getElementById('modal-importador').classList.remove('hidden');
+    }
+
+    function fecharModalImportador() {
+      document.getElementById('modal-importador').classList.add('hidden');
+    }
+
+    async function processarArquivoNoModal(e) {
+      const file = e.target.files[0];
+      if (!file) return;
+
+      const status = document.getElementById('status-leitura-modal');
+      status.classList.remove('hidden');
+      status.textContent = `Extraindo ${file.name}...`;
+
+      try {
+        const texto = await extrairTextoDoArquivo(file);
+        document.getElementById('modal-texto-extraido').value = texto.trim();
+        document.getElementById('modal-char-count').textContent = `${texto.length} caracteres`;
+        status.textContent = `Processado (${(file.size / 1024).toFixed(1)} KB)`;
+        mostrarToast("Arquivo dos Autos Lido!", `${file.name} pronto para análise.`);
+      } catch (err) {
+        console.error(err);
+        status.textContent = "Falha na extração.";
+        mostrarToast("Erro", "Não foi possível extrair o texto do arquivo.");
+      }
+    }
+
+    async function extrairTextoDoArquivo(file) {
+      if (file.name.endsWith('.pdf')) {
+        const buffer = await file.arrayBuffer();
+        const pdf = await pdfjsLib.getDocument({ data: buffer }).promise;
+        let resultado = "";
+        for (let i = 1; i <= pdf.numPages; i++) {
+          const page = await pdf.getPage(i);
+          const content = await page.getTextContent();
+          resultado += `[PÁGINA ${i}]\n` + content.items.map(item => item.str).join(" ") + "\n\n";
+        }
+        return resultado;
+      } else if (file.name.endsWith('.docx')) {
+        const buffer = await file.arrayBuffer();
+        const res = await mammoth.extractRawText({ arrayBuffer: buffer });
+        return res.value;
+      } else {
+        return await file.text();
+      }
+    }
+
+    function montarPromptImportador() {
+      const texto = document.getElementById('modal-texto-extraido').value.trim();
+      const tipoAto = document.getElementById('modal-tipo-ato').value;
+      const dispositivo = document.getElementById('modal-dispositivo').value;
+      const orientacoes = document.getElementById('modal-orientacoes-especificas').value.trim();
+
+      return `${COMANDO_MESTRE_JEC}Atue como assessor de gabinete no Juizado Especial do TJPB.
+Elabore a MINUTA JUDICIAL com base nos autos e na determinação do magistrado:
+
+[DIRETRIZ DA UNIDADE JURISDICIONAL - JEC]
+- Tipo de Ato: ${tipoAto.toUpperCase()}
+- Dispositivo: ${dispositivo}
+- Parâmetros Específicos: ${orientacoes || "Observar as teses consolidadas da unidade e Enunciados FONAJE cabíveis."}
+
+[SÍNTESE PROBATÓRIA E FATOS EXTRAÍDOS DOS AUTOS]
+${texto}
+${COMANDO_FINAL_JEC}`;
+    }
+
+    function aplicarModalNoGabinete() {
+      const texto = document.getElementById('modal-texto-extraido').value.trim();
+      if (!texto) {
+        mostrarToast("Atenção", "Carregue os autos antes de prosseguir.");
+        return;
+      }
+      document.getElementById('gab-prompt').value = montarPromptImportador();
+      fecharModalImportador();
+      navegarAba('gabinete');
+      mostrarToast("Dados Transferidos!", "Autos carregados no Gabinete IA.");
+    }
+
+    function carregarModalNoEditor() {
+      const texto = document.getElementById('modal-texto-extraido').value.trim();
+      if (!texto) {
+        mostrarToast("Atenção", "Carregue os autos antes de abrir no estúdio.");
+        return;
+      }
+      document.getElementById('editor-titulo').value = "Minuta dos Autos - JEC";
+      document.getElementById('editor-texto-prompt').value = montarPromptImportador();
+      atualizarContadorCaracteresEditor();
+      fecharModalImportador();
+      navegarAba('editor');
+      mostrarToast("Aberto no Estúdio", "Autos transferidos para edição de prompt.");
+    }
+
+    /* =========================================================================
+       9. COPIA SEGURA E TOASTS
+       ========================================================================= */
+    function executarCopiaSegura(texto) {
+      const ta = document.createElement('textarea');
+      ta.value = texto;
+      ta.style.position = 'fixed';
+      ta.style.top = '0';
+      ta.style.left = '0';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.focus();
+      ta.select();
+      let res = false;
+      try { res = document.execCommand('copy'); } catch (e) { res = false; }
+      document.body.removeChild(ta);
+      return res;
+    }
+
+    function copiarPromptJECDireto(id, btn) {
+      const item = BANCO_JEC_MASTER.find(p => p.id === id);
+      if (!item) return;
+      const texto = COMANDO_MESTRE_JEC + item.prompt + COMANDO_FINAL_JEC;
+      if (executarCopiaSegura(texto)) {
+        totalCopias++;
+        const orig = btn.innerHTML;
+        btn.innerHTML = `<i class="fa-solid fa-check text-emerald-400"></i> Copiado!`;
+        setTimeout(() => { btn.innerHTML = orig; }, 1500);
+        mostrarToast(`JEC #${item.id} Copiado!`, "Inclui Comando-Mestre e blindagem anti-alucinação.");
+      }
+    }
+
+    function copiarComandoMestreJECStandalone() {
+      if (executarCopiaSegura(COMANDO_MESTRE_JEC.trim())) {
+        mostrarToast("Comando-Mestre Copiado!", "Regras anti-alucinação prontas para colar.");
+      }
+    }
+
+    function copiarResumo615() {
+      const resumo = `Destaques Resolução CNJ nº 615/2025 nos Juizados:
+- VEDADO: IA sem supervisão humana, valoração de personalidade, predição criminal, ranqueamento social.
+- DIRETRIZES NO GABINETE:
+  • Ferramenta estrita de auxílio redacional.
+  • Decisão e responsabilidade indelegáveis do magistrado.
+  • Anonimização prévia obrigatória.`;
+      executarCopiaSegura(resumo);
+      mostrarToast("Resumo Copiado!", "Destaques da Res. CNJ 615 transferidos.");
+    }
+
+    function abrirModalRes615() {
+      document.getElementById('modalRes615').classList.remove('hidden');
+    }
+
+    function fecharModalRes615() {
+      document.getElementById('modalRes615').classList.add('hidden');
+    }
+
+    function mostrarToast(titulo, msg) {
+      const toast = document.getElementById('toastNotification');
+      document.getElementById('toastTitle').innerText = titulo;
+      document.getElementById('toastMsg').innerText = msg;
+      toast.classList.remove('translate-y-24', 'opacity-0');
+      toast.classList.add('translate-y-0', 'opacity-100');
+      setTimeout(() => {
+        toast.classList.add('translate-y-24', 'opacity-0');
+        toast.classList.remove('translate-y-0', 'opacity-100');
+      }, 2600);
+    }
+
+    /* =========================================================================
+       10. ALTERNÂNCIA DE TEMA CLARO E ESCURO
+       ========================================================================= */
+    function aplicarTema(tema) {
+      const icon = document.getElementById('theme-icon-container');
+      const label = document.getElementById('theme-label');
+
+      if (tema === 'dark') {
+        document.documentElement.classList.add('dark');
+        document.documentElement.classList.remove('light');
+        if (icon) icon.innerHTML = `<i class="fa-solid fa-moon text-amber-400"></i>`;
+        if (label) label.textContent = 'Escuro';
+      } else {
+        document.documentElement.classList.add('light');
+        document.documentElement.classList.remove('dark');
+        if (icon) icon.innerHTML = `<i class="fa-solid fa-sun text-amber-500"></i>`;
+        if (label) label.textContent = 'Claro';
+      }
+
+      localStorage.setItem('tjpb_theme', tema);
+    }
+
+    function alternarTema() {
+      const isDark = document.documentElement.classList.contains('dark');
+      const novo = isDark ? 'light' : 'dark';
+      aplicarTema(novo);
+      mostrarToast(novo === 'dark' ? "Modo Escuro Ativo" : "Modo Claro Ativo", "Interface visual atualizada.");
+    }
+
+    function sincronizarTemaInicial() {
+      const salvo = localStorage.getItem('tjpb_theme');
+      if (salvo) aplicarTema(salvo);
+      else {
+        const prefereEscuro = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        aplicarTema(prefereEscuro ? 'dark' : 'light');
+      }
+    }
+
+    /* =========================================================================
+       11. ONBOARDING E IDENTIFICAÇÃO DO SERVIDOR
+       ========================================================================= */
+    function inicializarOnboardingServidor() {
+      const inputNome = document.getElementById('inputNomeServidor');
+      const nomeSalvo = localStorage.getItem('tjpb_nome_servidor');
+
+      aplicarEfeitoDesfoqueFundo(true);
+
+      if (nomeSalvo && nomeSalvo.trim().length >= 2) {
+        inputNome.value = nomeSalvo.trim();
+        validarNomeServidor(nomeSalvo.trim());
+      }
+
+      setTimeout(() => {
+        if (inputNome) inputNome.focus();
+      }, 350);
+    }
+
+    function aplicarEfeitoDesfoqueFundo(ativo) {
+      const sidebar = document.getElementById('mainSidebar');
+      const content = document.getElementById('mainContentArea');
+
+      if (ativo) {
+        sidebar.classList.add('filter', 'blur-md', 'opacity-30', 'pointer-events-none', 'select-none');
+        content.classList.add('filter', 'blur-md', 'opacity-30', 'pointer-events-none', 'select-none');
+      } else {
+        sidebar.classList.remove('filter', 'blur-md', 'opacity-30', 'pointer-events-none', 'select-none');
+        content.classList.remove('filter', 'blur-md', 'opacity-30', 'pointer-events-none', 'select-none');
+      }
+    }
+
+    function validarNomeServidor(valor) {
+      const btn = document.getElementById('btnConfirmarAcesso');
+      const dica = document.getElementById('dicaValidacaoNome');
+      const nomeLimpo = valor.trim();
+
+      if (nomeLimpo.length >= 2) {
+        btn.disabled = false;
+        btn.className = "w-full sm:w-auto px-6 py-3 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-black text-xs sm:text-sm flex items-center justify-center gap-2 transition shadow-lg cursor-pointer active:scale-95";
+        dica.innerHTML = `<i class="fa-solid fa-check-circle text-emerald-400"></i> Pronto para acessar as soluções dos Juizados Especiais.`;
+        dica.className = "text-[11px] text-emerald-400 mt-1.5 flex items-center gap-1 font-medium";
+      } else {
+        btn.disabled = true;
+        btn.className = "w-full sm:w-auto px-6 py-3 rounded-xl bg-slate-800 text-slate-500 cursor-not-allowed font-bold text-xs sm:text-sm flex items-center justify-center gap-2 transition";
+        dica.innerHTML = `<i class="fa-solid fa-info-circle text-[10px]"></i> Digite ao menos 2 letras para habilitar a entrada no painel.`;
+        dica.className = "text-[11px] text-slate-500 mt-1.5 flex items-center gap-1";
+      }
+    }
+
+    function tentarConcluirOnboarding() {
+      const btn = document.getElementById('btnConfirmarAcesso');
+      if (!btn.disabled) concluirOnboarding();
+    }
+
+    function concluirOnboarding() {
+      const inputNome = document.getElementById('inputNomeServidor');
+      const modal = document.getElementById('modalOnboarding');
+      const nomeBruto = inputNome.value.trim();
+
+      if (nomeBruto.length < 2) return;
+
+      const primeiroNome = nomeBruto.split(' ')[0];
+      const formatado = primeiroNome.charAt(0).toUpperCase() + primeiroNome.slice(1);
+
+      localStorage.setItem('tjpb_nome_servidor', formatado);
+
+      const badge = document.getElementById('badgeSaudacaoServidor');
+      const nomeHeader = document.getElementById('nomeServidorHeader');
+      if (badge && nomeHeader) {
+        nomeHeader.textContent = formatado;
+        badge.classList.remove('hidden');
+        badge.classList.add('inline-flex');
+      }
+
+      modal.classList.add('opacity-0', 'scale-95', 'pointer-events-none');
+      aplicarEfeitoDesfoqueFundo(false);
+
+      setTimeout(() => {
+        modal.classList.add('hidden');
+        mostrarToast(`Bem-vindo(a), ${formatado}!`, "Painel dos Juizados Especiais liberado para uso.");
+      }, 450);
+    }
+
+    function reabrirOnboarding() {
+      const modal = document.getElementById('modalOnboarding');
+      const inputNome = document.getElementById('inputNomeServidor');
+      modal.classList.remove('hidden', 'opacity-0', 'scale-95', 'pointer-events-none');
+      aplicarEfeitoDesfoqueFundo(true);
+      setTimeout(() => {
+        if (inputNome) {
+          inputNome.focus();
+          inputNome.select();
+        }
+      }, 200);
+    }
+
+    /* =========================================================================
+       12. INICIALIZAÇÃO GERAL
+       ========================================================================= */
+    window.addEventListener('DOMContentLoaded', () => {
+      sincronizarTemaInicial();
+      inicializarOnboardingServidor();
+      renderizarPromptsJEC();
+
+      const label = document.getElementById('label-chave-ativa');
+      if (label) label.textContent = perfilGeminiAtivo === 'secondary' ? "Perfil 2 (reserva)" : "Perfil 1 (servidor)";
+
+      const sidebar = document.getElementById('mainSidebar');
+      const toggleBtn = document.getElementById('toggleSidebarBtn');
+      const mobileBtn = document.getElementById('mobileMenuBtn');
+      if (toggleBtn) toggleBtn.addEventListener('click', () => sidebar.classList.toggle('sidebar-collapsed'));
+      if (mobileBtn) mobileBtn.addEventListener('click', () => sidebar.classList.toggle('hidden'));
+
+      // Atalho Ctrl+K
+      document.addEventListener('keydown', (e) => {
+        if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+          e.preventDefault();
+          focarBuscaCatalogo();
+        }
+      });
+    });
+  </script>
+</body>
+</html>
